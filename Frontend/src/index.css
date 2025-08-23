@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{
+    @apply overflow-x-hidden scroll-smooth;
+}
+
+body{
+    @apply bg-green-900 text-white font-Jost tracking-wider;
+}
+
+.nav-link {
+    @apply text-lg font-bold duration-300;
+}
+
+.nav-link:hover{
+    @apply text-yellow-500;
+}
+
+/* Home */
+section {
+    @apply py-20 md:py-28 ;
+}
+
+h1{
+    @apply text-3xl md:text-4xl xl:text-5xl font-bold;
+}
+
+.btn{
+    @apply border border-yellow-500 bg-yellow-500 rounded-md px-5 py-2 duration-300;
+}
+
+.btn span{
+    @apply font-bold;
+}
+
+.btn:hover{
+    @apply opacity-90;
+}
+
+.btn-outline{
+    @apply bg-transparent;
+}
+
+.btn-outline:hover{
+    @apply bg-yellow-500;
+}
+
+/* AboutUS */
+
+.tittle{
+    @apply font-Jost text-yellow-500;
+}
+
+h2{
+    @apply text-2xl md:text-3xl xl:text-4xl;
+}
+
+
+h3{
+    @apply text-xl md:text-2xl xl:text-3xl;
+}
+
+/* popular */
+.popular__card:hover img{
+    @apply -top-8 duration-500 ease-in-out;
+}
+
+/* Dashboard Slider ===> react collaps */ 
+.ReactCollapse--collapse {
+    transition: height 500ms;
+  }
+

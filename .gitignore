@@ -1,0 +1,32 @@
+# Node.js dependencies
+Backend/node_modules/
+Frontend/node_modules/
+
+# Python dependencies
+flask-api/__pycache__/
+flask-api/env/
+flask-api/.env
+
+# Build outputs
+Frontend/dist/
+Backend/dist/
+
+# Environment files
+Backend/.env
+flask-api/.env
+
+
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# Misc
+*.pyc
