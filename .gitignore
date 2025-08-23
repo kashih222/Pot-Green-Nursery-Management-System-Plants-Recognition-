@@ -1,6 +1,7 @@
 # Node.js dependencies
 Backend/node_modules/
 Frontend/node_modules/
+node_modules/
 
 # Python dependencies
 flask-api/__pycache__/
