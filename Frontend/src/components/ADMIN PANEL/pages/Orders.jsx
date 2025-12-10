@@ -1,39 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Button,
-  MenuItem,
-  Select,
-  FormControl,
-  CircularProgress,
-  Alert,
-  Pagination,
-  TextField,
-  IconButton,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Tooltip,
-  Snackbar,
+  Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Button,MenuItem,
+  Select,FormControl,CircularProgress,Alert,Pagination,TextField,IconButton,Dialog,
+  DialogTitle,DialogContent,DialogActions,Tooltip,Snackbar,
 } from '@mui/material';
 
-import { format } from 'date-fns';
-import { FaSearch, FaFilter, FaCopy, FaDownload } from 'react-icons/fa';
-import { IoClose, IoSearchOutline } from 'react-icons/io5';
+import {  FaFilter, FaCopy, FaDownload } from 'react-icons/fa';
+import {  IoSearchOutline } from 'react-icons/io5';
 import { useAuth } from '../../auth/AuthContext';
 import axiosInstance from '../../../utils/axios';
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
 const Orders = () => {
-  const { currentUser } = useAuth();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

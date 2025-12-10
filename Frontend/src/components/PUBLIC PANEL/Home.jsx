@@ -1,4 +1,3 @@
-import React from 'react'
 import { LuLeaf, LuFlower } from "react-icons/lu";
 import { FaWhatsapp, FaMapMarkerAlt, FaInstagram, FaLeaf } from "react-icons/fa";
 import { PiPottedPlantBold } from "react-icons/pi";
@@ -19,7 +18,7 @@ const Home = () => {
             opacity-40 absolute right-0 bottom-0  '>
           </div>
 
-          <div className='flex flex-col items-center gap-5 lg:flex-row'>
+          <div className='flex flex-col items-center gap-5 lg:flex-row h-screen'>
             {/* content */}
             <div className='w-full space-y-5 lg:w-1/2 '>
               <h1>

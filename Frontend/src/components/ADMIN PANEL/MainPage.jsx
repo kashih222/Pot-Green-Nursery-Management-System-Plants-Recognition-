@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../auth/AuthContext";
 import MainPagesBoxes from "./pages/MainPagesBoxes";
-import ProductList from "./pages/PlantsList/PlantsList";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { IoAddOutline } from "react-icons/io5";
