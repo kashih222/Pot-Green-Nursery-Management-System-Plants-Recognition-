@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Plant = require('../../Models/Admin/plantUpload');
 const upload = require('../../Middlewares/Admin/upload');
 const plantController = require('../../Controllers/Admin/plantController');
-const { isAuthenticatedUser, authorizeRoles } = require('../../Middlewares/auth');
+const { isAuthenticatedUser, authorizeRoles } = require('../../Middlewares/Auth');
 
 // POST route to upload plant
 router.post('/upload', upload.single('plantImage'), async (req, res) => {

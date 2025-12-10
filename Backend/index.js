@@ -27,7 +27,7 @@ if (!process.env.JWT_SECRET) {
 const app = express();
 
 // MongoDB Connection String
-const MONGODB_URI = 'mongodb+srv://PotGreen:B5FYHFS9kWHLB9z2@potgreen.xlumbap.mongodb.net/?retryWrites=true&w=majority&appName=PotGreen';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 app.use(cors({
   origin: 'http://localhost:5173',
