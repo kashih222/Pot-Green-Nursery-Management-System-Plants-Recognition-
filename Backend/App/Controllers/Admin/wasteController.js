@@ -5,7 +5,8 @@ const PDFDocument = require('pdfkit');
 const Waste = require('../../Models/Admin/Waste');
 const Plant = require('../../Models/Admin/plantUpload');
 
-const WASTE_DIR = path.join(process.cwd(), 'uploads', 'waste');
+const WASTE_DIR = path.join('/tmp', 'uploads', 'waste');
+console.log(WASTE_DIR);
 if (!fs.existsSync(WASTE_DIR)) {
   fs.mkdirSync(WASTE_DIR, { recursive: true });
 }
