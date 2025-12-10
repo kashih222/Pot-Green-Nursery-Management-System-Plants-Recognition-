@@ -5,12 +5,11 @@ const PDFDocument = require('pdfkit');
 const Purchase = require('../../Models/Admin/Purchase');
 const Plant = require('../../Models/Admin/plantUpload');
 
-// Ensure uploads/purchases directory exists
-const PURCHASES_DIR = path.join(process.cwd(), 'uploads', 'purchases');
+const PURCHASES_DIR = path.join('/tmp', 'uploads', 'purchases');
 if (!fs.existsSync(PURCHASES_DIR)) {
   fs.mkdirSync(PURCHASES_DIR, { recursive: true });
 }
-
+console.log(PURCHASES_DIR);
 const formatDateTime = (d) => new Date(d).toLocaleString();
 
 const generateReceiptPdf = async ({ purchase, plant }) => {
@@ -52,7 +51,7 @@ const generateReceiptPdf = async ({ purchase, plant }) => {
     writeStream.on('error', reject);
   });
 
-  return `/uploads/purchases/${fileName}`;
+  return filePath; // Return the full temporary path
 };
 
 const generateMonthlyReportPdf = async ({ purchases }) => {
@@ -95,7 +94,7 @@ const generateMonthlyReportPdf = async ({ purchases }) => {
     writeStream.on('error', reject);
   });
 
-  return `/uploads/purchases/${fileName}`;
+  return filePath; // Return full temp path
 };
 
 exports.createPurchase = async (req, res) => {
@@ -141,7 +140,7 @@ exports.createPurchase = async (req, res) => {
 
     const populatedPurchase = await purchase.populate('plantId');
 
-    // Generate receipt PDF and include file path
+    // Generate receipt PDF
     const pdfPath = await generateReceiptPdf({ purchase: populatedPurchase, plant: updatedPlant });
 
     return res.status(201).json({
@@ -183,12 +182,11 @@ exports.getPurchasePdf = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Purchase not found' });
     }
 
-    // Generate into a temp file and stream back
     const filePath = await generateReceiptPdf({ purchase, plant: await Plant.findById(purchase.plantId._id) });
-    const absPath = path.join(process.cwd(), filePath.replace(/^\//, ''));
+
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename=purchase_${purchase._id}.pdf`);
-    fs.createReadStream(absPath).pipe(res);
+    fs.createReadStream(filePath).pipe(res);
   } catch (err) {
     console.error('Get Purchase PDF Error:', err);
     return res.status(500).json({ success: false, message: 'Failed to generate PDF', error: err.message });
@@ -212,14 +210,12 @@ exports.getMonthlyReportPdf = async (req, res) => {
       .populate('plantId');
 
     const filePath = await generateMonthlyReportPdf({ purchases });
-    const absPath = path.join(process.cwd(), filePath.replace(/^\//, ''));
+
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename=purchase_report_${year}_${month}.pdf`);
-    fs.createReadStream(absPath).pipe(res);
+    fs.createReadStream(filePath).pipe(res);
   } catch (err) {
     console.error('Get Monthly Report PDF Error:', err);
     return res.status(500).json({ success: false, message: 'Failed to generate monthly report', error: err.message });
   }
 };
-
-
