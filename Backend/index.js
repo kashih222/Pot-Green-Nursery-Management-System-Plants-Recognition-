@@ -41,8 +41,16 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' })); 
 app.use(cookieParser());
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Backend is running successfully 🚀",
+    time: new Date()
+  });
+});
+
 // Static files
 app.use('/uploads', express.static('uploads'));
+
 
 // Web Routes
 app.use('/api/web/registerUser', registerUserRouter);
@@ -60,7 +68,7 @@ app.use('/api/web/plant-recognition', plantRecognitionRoutes);
 app.use('/api/web/services', serviceRoutes);
 
 // Plant Routes (both public and admin)
-app.use('/api/admin/plants', plantRoutes); // All plant-related routes
+app.use('/api/admin/plants', plantRoutes); 
 
 // Cart Routes
 app.use('/api/cart', cartRoutes);
@@ -84,7 +92,7 @@ mongoose.connect(MONGODB_URI, {
 })
 .then(() => {
   console.log('✅ Connected to MongoDB Atlas successfully');
-  const PORT = process.env.PORT || 8020;
+  const PORT = process.env.PORT;
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
   });

@@ -11,7 +11,7 @@ const {
   updateOrderStatus
 } = require('../../Controllers/Admin/orderController');
 const { getOrderStats } = require('../../Controllers/Admin/orderAnalytics');
-const { protect, adminOnly, orderAccess } = require('../../Middelwares/Admin/authMiddleware');
+const { protect, adminOnly, orderAccess } = require('../../Middlewares/Admin/authMiddleware');
 
 /**
  * @route   POST /api/orders

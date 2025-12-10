@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const cartController = require('../../Controllers/Web/cartController');
-const authMiddleware = require('../../Middelwares/Admin/authMiddleware');
+const authMiddleware = require('../../Middlewares/Admin/authMiddleware');
 const { check, validationResult } = require('express-validator');
-const authenticate = require('../../Middelwares/Admin/authMiddleware'); 
+const authenticate = require('../../Middlewares/Admin/authMiddleware'); 
 
 // Protect all cart routes
 router.use(authMiddleware.protect);

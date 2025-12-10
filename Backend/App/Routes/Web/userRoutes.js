@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { getAllUsers, deleteUser, totalUser, fetchUserData, getCurrentUser, updateUserRole, updateUserProfile, uploadProfileImage } = require("../../Controllers/Admin/userController");
-const { protect } = require("../../Middelwares/Admin/authMiddleware");
-const upload = require("../../Middelwares/Admin/upload");
+const { protect } = require("../../Middlewares/Admin/authMiddleware");
+const upload = require("../../Middlewares/Admin/upload");
 
 // User profile routes
 router.get('/me', protect, getCurrentUser);

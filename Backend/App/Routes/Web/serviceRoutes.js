@@ -8,7 +8,7 @@ const {
   deleteServiceRequest, 
   getServiceStatistics 
 } = require("../../Controllers/Web/serviceController");
-const { protect } = require("../../Middelwares/Admin/authMiddleware");
+const { protect } = require("../../Middlewares/Admin/authMiddleware");
 
 // Public routes (no authentication required)
 // Note: create route now requires authentication

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { protect, adminOnly } = require('../../Middelwares/Admin/authMiddleware');
+const { protect, adminOnly } = require('wares/Admin/authMiddleware');
 const wasteController = require('../../Controllers/Admin/wasteController');
 
 router.use(protect, adminOnly);
