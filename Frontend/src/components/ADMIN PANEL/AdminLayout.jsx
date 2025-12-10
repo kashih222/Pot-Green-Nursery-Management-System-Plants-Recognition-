@@ -2,6 +2,7 @@ import  { useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 
+// eslint-disable-next-line react/prop-types
 const AdminLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 

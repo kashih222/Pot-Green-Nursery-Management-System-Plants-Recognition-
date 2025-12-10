@@ -33,7 +33,7 @@ const MainPage = () => {
             {currentUser?.name || "Muhammad Kashaf"}
           </h3>
           <p className="text-yellow-500 text-sm mt-2">
-            Here's what's happening in your store
+            Here&apos;s what&apos;s happening in your store
           </p>
           <div className="mt-4">
             <Link to="/dashboard/product/product-upload">
