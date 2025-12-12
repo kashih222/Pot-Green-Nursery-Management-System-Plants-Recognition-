@@ -1,4 +1,3 @@
-import React from 'react'
 import PlantCatalog from '../Plantspage/Plantcatalog';
 
 

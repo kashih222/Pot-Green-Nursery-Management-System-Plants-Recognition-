@@ -1,4 +1,3 @@
-import React from 'react'
 
 const About = () => {
   return (
@@ -93,9 +92,10 @@ const About = () => {
                          <p className='text-slate-200 font-Abel '>
                              🌿 Technology Meets Nature – We bring innovation into plant management and identification. <br />
                             🌿 Customer-Centric Service – We prioritize quality and convenience for plant lovers and nursery owners. <br />
-                            🌿 Sustainability Focused – Encouraging green living through responsible and eco-friendly gardening solutions. <br/> <hr  className='my-2'/>
+                            🌿 Sustainability Focused – Encouraging green living through responsible and eco-friendly gardening solutions. <br/>
                             Join us at Pot Green as we nurture a greener future, one plant at a time! 🌱✨
                          </p>
+                         <hr className='my-2' />
                      </div>
                  </div>
              </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { useAuth } from "../auth/AuthContext";
 import MainPagesBoxes from "./pages/MainPagesBoxes";
 import { Link } from "react-router-dom";

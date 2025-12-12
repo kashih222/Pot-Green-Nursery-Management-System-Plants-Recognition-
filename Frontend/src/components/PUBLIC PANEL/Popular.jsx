@@ -1,4 +1,3 @@
-import React from 'react'
 import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { LuLeaf, LuFlower  } from "react-icons/lu";

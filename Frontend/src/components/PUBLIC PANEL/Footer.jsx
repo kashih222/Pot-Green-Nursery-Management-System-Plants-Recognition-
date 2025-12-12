@@ -1,4 +1,3 @@
-import React from 'react'
 import { CiPaperplane } from "react-icons/ci";
 import { FaWhatsapp, FaInstagram, FaMapMarkerAlt, FaLeaf } from "react-icons/fa";
 import { Link } from "react-router";

@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaTruck, FaHeadphones } from "react-icons/fa";
 import { PiPottedPlantBold } from "react-icons/pi";
 import { GrMoney } from "react-icons/gr";

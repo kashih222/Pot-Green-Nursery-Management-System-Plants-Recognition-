@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from 'react';
 import Button from "@mui/material/Button";
 import { RiMenu2Fill } from "react-icons/ri";
 import Badge from "@mui/material/Badge";
@@ -116,6 +116,8 @@ const Header = ({ onMenuClick }) => {
                 anchorEl={notificationAnchorEl}
                 open={notificationOpen}
                 onClose={handleNotificationClose}
+                MenuListProps={{ disablePadding: false }}
+                disablePortal
                 slotProps={{
                   paper: {
                     sx: {
@@ -124,6 +126,10 @@ const Header = ({ onMenuClick }) => {
                       maxHeight: 400,
                       width: 360,
                     }
+                  },
+                  root: {
+                    // prevent aria-hidden on portal parent conflicting with focus
+                    disableRestoreFocus: true,
                   }
                 }}
               >
@@ -225,26 +231,30 @@ const Header = ({ onMenuClick }) => {
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
-            slotProps={{
-              paper: {
-                sx: {
-                  bgcolor: '#022c22',
-                  color: 'white',
-                  '& .MuiDivider-root': {
-                    borderColor: '#ca8a04'
-                  }
+          disablePortal
+          keepMounted
+          disableRestoreFocus
+          MenuListProps={{
+            'aria-labelledby': 'profile-menu-button',
+            role: 'menu',
+            disablePadding: false,
+          }}
+          slotProps={{
+            paper: {
+              sx: {
+                bgcolor: '#022c22',
+                color: 'white',
+                '& .MuiDivider-root': {
+                  borderColor: '#ca8a04'
                 }
               }
-            }}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            disableRestoreFocus
-            disablePortal
-            keepMounted
-            MenuListProps={{
-              'aria-labelledby': 'profile-menu-button',
-              role: 'menu'
-            }}
+            },
+            root: {
+              disableRestoreFocus: true,
+            }
+          }}
+          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
             <MenuItem onClick={handleClose} className="!bg-green-950 hover:!bg-green-900">
               <div className="flex items-center gap-3">

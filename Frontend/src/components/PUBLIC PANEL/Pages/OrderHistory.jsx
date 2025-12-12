@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../../components/auth/AuthContext';
 import { FaSpinner } from 'react-icons/fa';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GoGift } from "react-icons/go";
 import { IoStatsChart, IoPieChartOutline } from "react-icons/io5";

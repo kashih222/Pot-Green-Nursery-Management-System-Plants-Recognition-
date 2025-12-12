@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   LineChart,
@@ -150,18 +150,21 @@ const AnalyticsPage = () => {
     console.log('Current Date:', now);
 
     switch (timeRange) {
-      case 'week':
+      case 'week': {
         const weekAgo = new Date(now);
         weekAgo.setDate(currentDay - 7);
         return monthlySalesData.filter(item => item.fullDate >= weekAgo);
+      }
 
-      case 'month':
+      case 'month': {
         const monthAgo = new Date(currentYear, currentMonth - 1, currentDay);
         return monthlySalesData.filter(item => item.fullDate >= monthAgo);
+      }
 
-      case 'year':
+      case 'year': {
         const yearStart = new Date(currentYear, 0, 1);
         return monthlySalesData.filter(item => item.fullDate >= yearStart);
+      }
 
       default:
         return monthlySalesData;
@@ -182,7 +185,7 @@ const AnalyticsPage = () => {
 
     let filteredOrders = [];
     switch (timeRange) {
-      case 'week':
+      case 'week': {
         const weekAgo = new Date(now);
         weekAgo.setDate(currentDay - 7);
         filteredOrders = orderStats.timeBasedOrders
@@ -192,8 +195,9 @@ const AnalyticsPage = () => {
           })
           .flatMap(day => day.orders);
         break;
+      }
 
-      case 'month':
+      case 'month': {
         const monthAgo = new Date(currentYear, currentMonth - 1, currentDay);
         filteredOrders = orderStats.timeBasedOrders
           .filter(day => {
@@ -202,8 +206,9 @@ const AnalyticsPage = () => {
           })
           .flatMap(day => day.orders);
         break;
+      }
 
-      case 'year':
+      case 'year': {
         const yearStart = new Date(currentYear, 0, 1);
         filteredOrders = orderStats.timeBasedOrders
           .filter(day => {
@@ -212,6 +217,7 @@ const AnalyticsPage = () => {
           })
           .flatMap(day => day.orders);
         break;
+      }
 
       default:
         filteredOrders = orderStats.timeBasedOrders.flatMap(day => day.orders);

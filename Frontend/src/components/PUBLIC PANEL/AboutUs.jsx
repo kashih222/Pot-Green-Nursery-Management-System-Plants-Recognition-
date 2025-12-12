@@ -1,4 +1,3 @@
-import React  from 'react'
 import { Link } from "react-router";
 import { LuLeaf, LuFlower  } from "react-icons/lu";
 

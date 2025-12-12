@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { FaUser, FaMapMarkerAlt, FaMobileAlt, FaLock, FaCheckCircle } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { FaUser, FaMapMarkerAlt, FaMobileAlt, FaLock, FaCheckCircle, FaImage } from 'react-icons/fa';
 import { useAuth } from '../../../auth/AuthContext';
 import { useCart } from '../../../../context/CartContext';
 import axios from 'axios';

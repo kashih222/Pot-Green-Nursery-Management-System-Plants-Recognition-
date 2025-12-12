@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { IoCartOutline, IoHeartOutline, IoHeart } from "react-icons/io5";
 import axios from "axios";
 import { useAuth } from "../../../auth/AuthContext";

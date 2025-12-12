@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Button,MenuItem,
   Select,FormControl,CircularProgress,Alert,Pagination,TextField,IconButton,Dialog,
@@ -35,6 +35,9 @@ const Orders = () => {
     { value: 'delivered', label: 'Delivered', color: '!bg-green-100 !text-green-800' },
     { value: 'cancelled', label: 'Cancelled', color: '!bg-red-100 !text-red-800' }
   ];
+
+  const normalizeStatus = (status) =>
+    typeof status === 'string' ? status.toLowerCase() : status;
 
   useEffect(() => {
     fetchOrders();
@@ -76,7 +79,7 @@ const Orders = () => {
       setError(null);
     } catch (err) {
       // Only log errors in development
-      if (process.env.NODE_ENV === 'development') {
+      if (import.meta.env.DEV) {
         console.error('Error fetching orders:', err.response || err);
       }
       setError(err.response?.data?.message || 'Failed to fetch orders. Please check if the backend server is running.');
@@ -310,7 +313,8 @@ const Orders = () => {
 
   // Simplified status badge component
   const StatusBadge = ({ status }) => {
-    const option = STATUS_OPTIONS.find(opt => opt.value === status) || STATUS_OPTIONS[0];
+    const normalized = normalizeStatus(status);
+    const option = STATUS_OPTIONS.find(opt => opt.value === normalized) || STATUS_OPTIONS[0];
     return (
       <span className={`px-2 py-1 rounded-full text-xs font-medium ${option.color}`}>
         {option.label}
@@ -321,12 +325,13 @@ const Orders = () => {
   // Single function to render status select
   const StatusSelect = ({ value, onChange, className }) => (
     <Select
-      value={value || 'pending'}
+      value={normalizeStatus(value) || 'pending'}
       onChange={onChange}
       className={className}
       disabled={loading}
       aria-label="Order status"
       MenuProps={{
+        disablePortal: true,
         anchorOrigin: {
           vertical: 'bottom',
           horizontal: 'left',
@@ -346,7 +351,7 @@ const Orders = () => {
           key={option.value} 
           value={option.value}
           role="option"
-          aria-selected={value === option.value}
+          aria-selected={normalizeStatus(value) === option.value}
         >
           <StatusBadge status={option.value} />
         </MenuItem>

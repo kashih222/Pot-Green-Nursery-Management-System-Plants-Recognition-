@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import PublicPanel from "./components/PUBLIC PANEL/PublicPanel";
 import AdminLayout from "./components/ADMIN PANEL/AdminLayout";
