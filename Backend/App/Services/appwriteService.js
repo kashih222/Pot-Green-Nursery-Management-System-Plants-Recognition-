@@ -55,9 +55,6 @@ const uploadFile = async (filePath, fileName) => {
         // although 'getFileView' returns the binary. 
         // We construct the URL manually or use the endpoint.
         
-        const endpoint = process.env.APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1';
-        const projectId = process.env.APPWRITE_PROJECT_ID;
-        
         const viewUrl = `${endpoint}/storage/buckets/${BUCKET_ID}/files/${result.$id}/view?project=${projectId}&mode=admin`;
         
         return viewUrl;
