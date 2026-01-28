@@ -210,6 +210,16 @@ router.delete('/:id', async (req, res) => {
       });
     }
 
+    // Delete image from Appwrite if it exists
+    if (plant.plantImage) {
+      try {
+        await deleteFile(plant.plantImage);
+      } catch (err) {
+        console.error('Failed to delete image from Appwrite:', err);
+        // Continue with deletion of plant record even if image delete fails
+      }
+    }
+
     await Plant.findByIdAndDelete(req.params.id);
     res.status(200).json({
       success: true,
@@ -244,21 +254,45 @@ router.put('/:id', upload.single('plantImage'), async (req, res) => {
     
     if (req.body.plantName) updateData.plantName = req.body.plantName;
     if (req.body.description) updateData.description = req.body.description;
+    
+    // Handle prices (could be JSON string or object)
     if (req.body.prices) {
+      let prices = req.body.prices;
+      if (typeof prices === 'string') {
+        try {
+          prices = JSON.parse(prices);
+        } catch (e) {
+          console.error('Error parsing prices:', e);
+        }
+      }
+      
       updateData.prices = {
-        small: parseFloat(req.body.prices.small),
-        medium: parseFloat(req.body.prices.medium),
-        large: parseFloat(req.body.prices.large)
+        small: parseFloat(prices.small),
+        medium: parseFloat(prices.medium),
+        large: parseFloat(prices.large)
       };
     }
+    
     if (req.body.category) updateData.category = req.body.category;
+    
+    // Handle stockQuantity (could be JSON string or object)
     if (req.body.stockQuantity) {
+      let stockQuantity = req.body.stockQuantity;
+      if (typeof stockQuantity === 'string') {
+        try {
+          stockQuantity = JSON.parse(stockQuantity);
+        } catch (e) {
+          console.error('Error parsing stockQuantity:', e);
+        }
+      }
+
       updateData.stockQuantity = {
-        small: parseInt(req.body.stockQuantity.small),
-        medium: parseInt(req.body.stockQuantity.medium),
-        large: parseInt(req.body.stockQuantity.large)
+        small: parseInt(stockQuantity.small),
+        medium: parseInt(stockQuantity.medium),
+        large: parseInt(stockQuantity.large)
       };
     }
+    
     if (req.body.rating) {
       const rating = parseFloat(req.body.rating);
       if (rating >= 1 && rating <= 5) {
@@ -266,9 +300,24 @@ router.put('/:id', upload.single('plantImage'), async (req, res) => {
       }
     }
 
-    // If new image is uploaded, add it to update data
+    // If new image is uploaded, add it to update data and delete old one
     if (req.file) {
-      updateData.plantImage = req.file.filename;
+      try {
+        // Upload new image
+        const imageUrl = await uploadFile(req.file.path, req.file.originalname);
+        updateData.plantImage = imageUrl;
+
+        // Delete old image from Appwrite if it exists
+        if (plant.plantImage) {
+           await deleteFile(plant.plantImage);
+        }
+      } catch (uploadError) {
+         console.error('Appwrite upload/delete failed during update:', uploadError);
+         return res.status(500).json({
+            success: false,
+            error: `Failed to update image: ${uploadError.message}`
+         });
+      }
     }
 
     // Update the plant with only the changed fields

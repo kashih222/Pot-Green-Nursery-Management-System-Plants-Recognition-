@@ -47,8 +47,10 @@ const PlantsList = () => {
     },
     category: "",
     stockQuantity: "",
-    rating: ""
+    rating: "",
+    plantImage: null
   });
+  const [editImagePreview, setEditImagePreview] = useState(null);
   const [editSuccess, setEditSuccess] = useState(false);
   const plantsPerPage = 5;
   const navigate = useNavigate();
@@ -197,8 +199,21 @@ const PlantsList = () => {
       },
       category: plant.category || "",
       stockQuantity: "",
-      rating: plant.rating || ""
+      rating: plant.rating || "",
+      plantImage: null
     });
+    
+    // Set initial preview
+    if (plant.plantImage) {
+      setEditImagePreview(
+        plant.plantImage.startsWith('http') 
+          ? plant.plantImage 
+          : `${import.meta.env.VITE_API_BASE_URL}/uploads/${plant.plantImage}`
+      );
+    } else {
+      setEditImagePreview(null);
+    }
+    
     setEditModalOpen(true);
   };
 
@@ -215,9 +230,22 @@ const PlantsList = () => {
       },
       category: "",
       stockQuantity: "",
-      rating: ""
+      rating: "",
+      plantImage: null
     });
+    setEditImagePreview(null);
     setEditSuccess(false);
+  };
+
+  const handleEditImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEditFormData(prev => ({
+        ...prev,
+        plantImage: file
+      }));
+      setEditImagePreview(URL.createObjectURL(file));
+    }
   };
 
   const handleEditInputChange = (e) => {
@@ -261,11 +289,18 @@ const PlantsList = () => {
             const newQuantity = parseInt(editFormData[key]) || 0;
             const currentQuantity = parseInt(editingPlant.stockQuantity) || 0;
             formData.append(key, currentQuantity + newQuantity);
+          } else if (key === "plantImage") {
+            // Skip handled separately below
           } else {
             formData.append(key, editFormData[key]);
           }
         }
       });
+
+      // Append image if exists
+      if (editFormData.plantImage) {
+        formData.append('plantImage', editFormData.plantImage);
+      }
 
       const response = await axios.put(
         `${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/${editingPlant._id}`,
@@ -397,7 +432,7 @@ const PlantsList = () => {
                       alt={plant.plantName}
                       className="object-cover w-full h-full"
                       onError={(e) => {
-                        e.target.src = 'src/assets/img/logo.png'; // Fallback image
+                        e.target.src = 'https://via.placeholder.com/150?text=No+Image'; // Fallback image
                       }}
                     />
                   </div>
@@ -509,6 +544,47 @@ const PlantsList = () => {
             </Alert>
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            {/* Image Upload Section */}
+            <div className="col-span-1 md:col-span-2 flex flex-col items-center justify-center p-4 border-2 border-dashed border-yellow-500/50 rounded-lg bg-green-900/30">
+              {editImagePreview ? (
+                <div className="relative w-full max-w-xs h-48 mb-4">
+                  <img 
+                    src={editImagePreview} 
+                    alt="Preview" 
+                    className="w-full h-full object-contain rounded-lg"
+                  />
+                  <Button
+                    component="label"
+                    variant="contained"
+                    size="small"
+                    className="!absolute !bottom-2 !right-2 !bg-yellow-500 !text-green-950 hover:!bg-yellow-600"
+                  >
+                    Change Image
+                    <input
+                      type="file"
+                      hidden
+                      accept="image/*"
+                      onChange={handleEditImageChange}
+                    />
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  component="label"
+                  variant="outlined"
+                  className="!text-yellow-500 !border-yellow-500 hover:!bg-yellow-500/10"
+                >
+                  Upload Image
+                  <input
+                    type="file"
+                    hidden
+                    accept="image/*"
+                    onChange={handleEditImageChange}
+                  />
+                </Button>
+              )}
+            </div>
+
             <TextField
               name="plantName"
               label="Plant Name"

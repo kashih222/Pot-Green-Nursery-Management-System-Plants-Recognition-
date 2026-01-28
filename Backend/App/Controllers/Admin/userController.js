@@ -1,6 +1,7 @@
 const User = require("../../Models/Web/register.user"); // Adjust the path as necessary
 const fs = require('fs');
 const path = require('path');
+const { uploadFile, deleteFile } = require('../../Services/appwriteService');
 
 // Get all users
 const getAllUsers = async (req, res) => {
@@ -216,16 +217,42 @@ const uploadProfileImage = async (req, res) => {
       });
     }
 
+    // Determine bucket ID: prefer APPWRITE_USER_BUCKET_ID, fallback to default
+    const userBucketId = process.env.APPWRITE_USER_BUCKET_ID || process.env.APPWRITE_BUCKET_ID;
+
+    // Upload new image to Appwrite
+    let profilePicUrl = null;
+    try {
+      profilePicUrl = await uploadFile(req.file.path, req.file.originalname, userBucketId);
+    } catch (uploadError) {
+       console.error('Appwrite upload failed:', uploadError);
+       return res.status(500).json({
+         success: false,
+         message: 'Failed to upload image to storage',
+         error: uploadError.message
+       });
+    }
+
     // Delete old profile image if it exists
     if (user.profilePic) {
-      const oldImagePath = path.join(__dirname, '../../../uploads', user.profilePic);
-      if (fs.existsSync(oldImagePath)) {
-        fs.unlinkSync(oldImagePath);
+      if (user.profilePic.startsWith('http')) {
+         // It's an Appwrite URL, delete from Appwrite
+         try {
+           await deleteFile(user.profilePic);
+         } catch (err) {
+           console.error('Failed to delete old image from Appwrite:', err);
+         }
+      } else {
+         // It's a local file
+         const oldImagePath = path.join(__dirname, '../../../uploads', user.profilePic);
+         if (fs.existsSync(oldImagePath)) {
+           fs.unlinkSync(oldImagePath);
+         }
       }
     }
 
-    // Update user with new profile image
-    user.profilePic = req.file.filename;
+    // Update user with new profile image URL
+    user.profilePic = profilePicUrl;
     await user.save();
 
     res.status(200).json({

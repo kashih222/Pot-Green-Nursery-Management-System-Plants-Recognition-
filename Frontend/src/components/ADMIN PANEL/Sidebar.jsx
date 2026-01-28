@@ -60,11 +60,14 @@ const Sidebar = ({ isOpen }) => {
     >
       <div className={`pt-16 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
         <div className="logo flex items-center justify-center w-full py-8 border-b border-yellow-500/20 bg-green-950">
+         <Link to={"/dashboard"}>
           <img
             src={logo}
             alt="Company Logo"
             className="w-[120px] h-auto object-contain transition-transform duration-300 hover:scale-110"
           />
+         </Link>
+         
         </div>
 
         <nav className="p-2 sm:p-4">

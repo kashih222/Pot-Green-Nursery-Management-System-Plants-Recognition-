@@ -223,7 +223,10 @@ const AdminProfile = () => {
                  <div className="w-32 h-32 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-4xl font-bold text-green-900 border-4 border-white shadow-xl group-hover:scale-105 transition-transform duration-300 overflow-hidden">
                    {userData.profilePic ? (
                      <img 
-                       src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${userData.profilePic}`} 
+                       src={userData.profilePic.startsWith('http') 
+                         ? userData.profilePic 
+                         : `${import.meta.env.VITE_API_BASE_URL}/uploads/${userData.profilePic}`
+                       } 
                        alt={userData.name} 
                        className="w-full h-full rounded-full object-cover"
                        onError={(e) => {

@@ -500,7 +500,7 @@ const Navbar = () => {
                     <>
                       {userDetails?.profilePic ? (
                         <img
-                          src={`${API_BASE_URL}/uploads/${userDetails.profilePic}`}
+                          src={userDetails.profilePic.startsWith('http') ? userDetails.profilePic : `${API_BASE_URL}/uploads/${userDetails.profilePic}`}
                           alt="Profile"
                           className="w-8 h-8 rounded-full object-cover border-2 border-yellow-500"
                           onError={(e) => {
@@ -532,7 +532,7 @@ const Navbar = () => {
                           <div className="rounded-full w-8 h-8 overflow-hidden border-2 border-yellow-500 bg-yellow-400 flex items-center justify-center">
                             {userDetails?.profilePic ? (
                               <img
-                                src={`${API_BASE_URL}/uploads/${userDetails.profilePic}`}
+                                src={userDetails.profilePic.startsWith('http') ? userDetails.profilePic : `${API_BASE_URL}/uploads/${userDetails.profilePic}`}
                                 alt={userDetails?.name || 'User'}
                                 className="object-cover w-full h-full"
                                 onError={(e) => {

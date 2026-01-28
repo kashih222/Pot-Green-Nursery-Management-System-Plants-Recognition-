@@ -4,6 +4,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 
+dotenv.config();
+
 const authRoutes = require('./App/Routes/Admin/authRoutes');
 const registerUserRouter = require('./App/Routes/Web/registerUser');
 const userRouter = require('./App/Routes/Web/userRoutes');
@@ -15,8 +17,6 @@ const purchaseRoutes = require('./App/Routes/Admin/purchaseRoutes');
 const wasteRoutes = require('./App/Routes/Admin/wasteRoutes');
 const plantRecognitionRoutes = require('./App/Routes/Web/plantRecognitionRoutes');
 const serviceRoutes = require('./App/Routes/Web/serviceRoutes');
-
-dotenv.config();
 
 // Set JWT secret with fallback
 if (!process.env.JWT_SECRET) {
