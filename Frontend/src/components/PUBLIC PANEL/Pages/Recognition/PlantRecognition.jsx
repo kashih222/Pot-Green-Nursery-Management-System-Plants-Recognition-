@@ -275,11 +275,11 @@ const PlantRecognition = () => {
                 </div>
 
                 {/* Uploaded Image */}
-                {result.uploadedImage && (
+                {(preview || result.uploadedImage) && (
                   <div>
                     <h4 className="text-sm font-medium text-gray-700 mb-2">Analyzed Image</h4>
                     <img 
-                      src={result.uploadedImage} 
+                      src={preview || result.uploadedImage} 
                       alt="Analyzed Plant" 
                       className="w-full h-48 object-cover rounded-lg shadow-md"
                     />

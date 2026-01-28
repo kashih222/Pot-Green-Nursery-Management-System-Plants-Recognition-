@@ -132,7 +132,10 @@ const OrderHistory = () => {
                           <li key={item._id} className="py-6 flex">
                             <div className="flex-shrink-0 w-24 h-24 rounded-md overflow-hidden">
                               <img
-                                src={`http://localhost:8020/uploads/${item.image}`}
+                                src={item.image?.startsWith('http')
+                                  ? item.image
+                                  : `${import.meta.env.VITE_API_BASE_URL}/uploads/${item.image}`
+                                }
                                 alt={item.name}
                                 className="w-full h-full object-cover"
                                 onError={(e) => {

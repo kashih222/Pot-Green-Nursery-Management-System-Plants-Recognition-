@@ -288,10 +288,13 @@ const PlantCatalog = () => {
             >
               {plant?.plantImage && (
                 <img
-                  src={`${import.meta.env.VITE_API_BASE_URL}${plant.plantImage.startsWith("/uploads")
+                  src={plant.plantImage.startsWith('http')
                     ? plant.plantImage
-                    : `/uploads/${plant.plantImage}`
-                    }`}
+                    : `${import.meta.env.VITE_API_BASE_URL}${plant.plantImage.startsWith("/uploads")
+                      ? plant.plantImage
+                      : `/uploads/${plant.plantImage}`
+                    }`
+                  }
                   alt={plant.plantName}
                   className="w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                   onError={(e) => {

@@ -390,7 +390,10 @@ const PlantsList = () => {
                 <td className="p-3 text-green-950 flex items-center justify-center">
                   <div className="w-20 h-20 overflow-hidden rounded-lg bg-red-50 flex items-center justify-center">
                     <img
-                      src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${plant.plantImage}`}
+                      src={plant.plantImage?.startsWith('http') 
+                        ? plant.plantImage 
+                        : `${import.meta.env.VITE_API_BASE_URL}/uploads/${plant.plantImage}`
+                      }
                       alt={plant.plantName}
                       className="object-cover w-full h-full"
                       onError={(e) => {

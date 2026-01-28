@@ -5,6 +5,7 @@ const Plant = require('../../Models/Admin/plantUpload');
 const upload = require('../../Middlewares/Admin/upload');
 const plantController = require('../../Controllers/Admin/plantController');
 const { isAuthenticatedUser, authorizeRoles } = require('../../Middlewares/Auth');
+const { uploadFile, deleteFile } = require('../../Services/appwriteService');
 
 // POST route to upload plant
 router.post('/upload', upload.single('plantImage'), async (req, res) => {
@@ -46,7 +47,20 @@ router.post('/upload', upload.single('plantImage'), async (req, res) => {
     // Validate rating between 1-5
     const validatedRating = rating && rating >= 1 && rating <= 5 ? rating : 0;
 
-    const plantImage = req.file ? req.file.filename : null;
+    // Upload image to Appwrite
+    let plantImage = null;
+    if (req.file) {
+      try {
+        plantImage = await uploadFile(req.file.path, req.file.originalname);
+      } catch (uploadError) {
+        console.error('Appwrite upload failed:', uploadError);
+        return res.status(500).json({
+          success: false,
+          error: 'Failed to upload image to storage'
+        });
+      }
+    }
+
     const newPlant = new Plant({
       plantName,
       description,

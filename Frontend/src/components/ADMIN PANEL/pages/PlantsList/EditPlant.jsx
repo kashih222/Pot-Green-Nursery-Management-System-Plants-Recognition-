@@ -62,7 +62,11 @@ const EditPlant = () => {
           stockQuantity: plant.stockQuantity,
           rating: plant.rating || "",
         });
-        setPreviewImage(`${import.meta.env.VITE_API_BASE_URL}/uploads/${plant.plantImage}`);
+        setPreviewImage(
+          plant.plantImage?.startsWith('http')
+            ? plant.plantImage
+            : `${import.meta.env.VITE_API_BASE_URL}/uploads/${plant.plantImage}`
+        );
       } catch (err) {
         console.error("Error fetching plant:", err);
         setError(err.message || "Failed to fetch plant details");

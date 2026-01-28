@@ -70,7 +70,9 @@ const recognizePlant = async (req, res) => {
         });
 
         // Create image URL
-        const uploadedImageURL = `http://localhost:8020/uploads/${req.file.filename}`;
+        // Note: We use os.tmpdir() so we can't serve this file directly via static middleware.
+        // The frontend should use its local preview.
+        const uploadedImageURL = null; // Removed hardcoded localhost URL
 
         res.json({
           success: true,
