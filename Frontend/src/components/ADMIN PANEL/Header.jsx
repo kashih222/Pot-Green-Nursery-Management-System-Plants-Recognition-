@@ -80,7 +80,7 @@ const Header = ({ onMenuClick }) => {
   const name = currentUser?.name || "Guest User";
   const email = currentUser?.email || "guestemail@gmail.com";
   const profilePic = currentUser?.profilePic 
-    ? `http://localhost:8020/uploads/${currentUser.profilePic}` 
+    ? `${import.meta.env.VITE_API_BASE_URL}/uploads/${currentUser.profilePic}` 
     : "src/assets/img/KashafProfile.jpeg";
 
   return (

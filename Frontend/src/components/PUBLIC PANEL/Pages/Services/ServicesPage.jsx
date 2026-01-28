@@ -152,8 +152,14 @@ const ServicesPage = () => {
 
       // Send data to backend
       const response = await axios.post(
-        "http://localhost:8020/api/web/services/create",
-        serviceRequestData
+        `${import.meta.env.VITE_API_BASE_URL}/api/web/services/create`,
+        { ...serviceRequestData, userId: currentUser?._id },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       if (response.data.success) {

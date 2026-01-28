@@ -25,13 +25,13 @@ const PurchasesPage = () => {
   }), [token]);
 
   const fetchPlants = async () => {
-    const res = await axios.get('http://localhost:8020/api/admin/plants/all', authHeaders);
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/all`, authHeaders);
     if (!res.data?.success) throw new Error(res.data?.message || 'Failed to load plants');
     return res.data.data || [];
   };
 
   const fetchPurchases = async () => {
-    const res = await axios.get('http://localhost:8020/api/purchases', authHeaders);
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/purchases`, authHeaders);
     if (!res.data?.success) throw new Error(res.data?.message || 'Failed to load purchases');
     return res.data.data || [];
   };
@@ -76,7 +76,7 @@ const PurchasesPage = () => {
         quantity: Number(form.quantity)
       };
 
-      const res = await axios.post('http://localhost:8020/api/purchases', payload, authHeaders);
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/purchases`, payload, authHeaders);
       if (!res.data?.success) throw new Error(res.data?.message || 'Failed to create purchase');
 
       setSuccess('Purchase recorded, stock updated, and receipt PDF generated');
@@ -110,7 +110,7 @@ const PurchasesPage = () => {
 
   const handleDownloadReceipt = async (id) => {
     try {
-      await download(`http://localhost:8020/api/purchases/pdf/${id}`, `purchase_${id}.pdf`);
+      await download(`${import.meta.env.VITE_API_BASE_URL}/api/purchases/pdf/${id}`, `purchase_${id}.pdf`);
       setSuccess('Receipt PDF downloaded');
     } catch (e) {
       setError(e.message || 'Failed to download receipt');
@@ -124,7 +124,7 @@ const PurchasesPage = () => {
     try {
       const y = report.year;
       const m = report.month;
-      await download(`http://localhost:8020/api/purchases/pdf/monthly/${y}/${m}`, `purchase_report_${y}_${m}.pdf`);
+      await download(`${import.meta.env.VITE_API_BASE_URL}/api/purchases/pdf/monthly/${y}/${m}`, `purchase_report_${y}_${m}.pdf`);
       setSuccess('Monthly report PDF downloaded');
     } catch (e1) {
       setError(e1.message || 'Failed to download report');

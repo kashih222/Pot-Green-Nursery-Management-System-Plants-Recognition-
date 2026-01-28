@@ -21,8 +21,8 @@ const OutOfStockPage = () => {
         setLoading(true);
         setError(null);
         const [plantsRes, purchasesRes] = await Promise.all([
-          axios.get('http://localhost:8020/api/admin/plants/all', authHeaders),
-          axios.get('http://localhost:8020/api/purchases', authHeaders)
+          axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/all`, authHeaders),
+          axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/purchases`, authHeaders)
         ]);
 
         if (!mounted) return;
@@ -154,8 +154,8 @@ const OutOfStockPage = () => {
                       <td className="p-3">
                         <div className="w-16 h-16 overflow-hidden rounded bg-green-800 flex items-center justify-center">
                           <img
-                            src={`http://localhost:8020/uploads/${p.plantImage}`}
-                            alt={p.plantName}
+                            src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${p.plantImage}`}
+                          alt={p.plantName}
                             className="object-cover w-full h-full"
                             onError={(e) => { e.currentTarget.src = {logo}; }}
                           />

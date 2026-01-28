@@ -37,7 +37,7 @@ const PlantCatalog = () => {
       try {
         setIsLoadingPlants(true);
         const response = await axios.get(
-          "http://localhost:8020/api/admin/plants/all"
+          `${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/all`
         );
 
         if (response.data?.success && Array.isArray(response.data.data)) {
@@ -288,7 +288,7 @@ const PlantCatalog = () => {
             >
               {plant?.plantImage && (
                 <img
-                  src={`http://localhost:8020${plant.plantImage.startsWith("/uploads")
+                  src={`${import.meta.env.VITE_API_BASE_URL}${plant.plantImage.startsWith("/uploads")
                     ? plant.plantImage
                     : `/uploads/${plant.plantImage}`
                     }`}

@@ -44,7 +44,7 @@ const ServiceRequests = () => {
         ...filters
       });
 
-      const response = await fetch(`http://localhost:8020/api/web/services/all?${queryParams}`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/web/services/all?${queryParams}`);
       const result = await response.json();
 
       if (result.success) {
@@ -72,7 +72,7 @@ const ServiceRequests = () => {
   // Handle status update
   const handleStatusUpdate = async (requestId, newStatus, adminNotes, estimatedCost) => {
     try {
-      const response = await fetch(`http://localhost:8020/api/web/services/${requestId}/status`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/web/services/${requestId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ const ServiceRequests = () => {
   // Handle delete
   const handleDelete = async (requestId) => {
     try {
-      const response = await fetch(`http://localhost:8020/api/web/services/${requestId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/web/services/${requestId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

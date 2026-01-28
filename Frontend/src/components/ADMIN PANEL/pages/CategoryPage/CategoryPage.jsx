@@ -43,7 +43,7 @@ const CategoryPage = () => {
           return;
         }
 
-        const response = await axios.get('http://localhost:8020/api/admin/plants/all', {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/all`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -97,7 +97,7 @@ const CategoryPage = () => {
   const handleAddCategory = async (values, { resetForm }) => {
     try {
       const response = await axios.post(
-        'http://localhost:8020/api/admin/plants/categories',
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/categories`,
         { name: values.name },
         {
           headers: {
@@ -122,7 +122,7 @@ const CategoryPage = () => {
   const handleUpdateCategory = async (values) => {
     try {
       const response = await axios.put(
-        `http://localhost:8020/api/admin/plants/categories/${selectedCategory._id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/categories/${selectedCategory._id}`,
         { name: values.name },
         {
           headers: {
@@ -148,7 +148,7 @@ const CategoryPage = () => {
   const handleDeleteCategory = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:8020/api/admin/plants/categories/${selectedCategory._id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/categories/${selectedCategory._id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`

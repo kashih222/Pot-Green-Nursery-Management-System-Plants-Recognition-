@@ -23,13 +23,13 @@ const WastePage = () => {
   const authHeaders = useMemo(() => ({ headers: { Authorization: `Bearer ${token}` } }), [token]);
 
   const fetchPlants = async () => {
-    const res = await axios.get('http://localhost:8020/api/admin/plants/all', authHeaders);
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/all`, authHeaders);
     if (!res.data?.success) throw new Error(res.data?.message || 'Failed to load plants');
     return res.data.data || [];
   };
 
   const fetchWastes = async () => {
-    const res = await axios.get('http://localhost:8020/api/waste', authHeaders);
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/waste`, authHeaders);
     if (!res.data?.success) throw new Error(res.data?.message || 'Failed to load waste');
     return res.data.data || [];
   };
@@ -74,7 +74,7 @@ const WastePage = () => {
         quantity: Number(form.quantity)
       };
 
-      const res = await axios.post('http://localhost:8020/api/waste', payload, authHeaders);
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/waste`, payload, authHeaders);
       if (!res.data?.success) throw new Error(res.data?.message || 'Failed to create waste');
 
       setSuccess('Waste recorded, stock decreased, and receipt PDF generated');
@@ -107,7 +107,7 @@ const WastePage = () => {
 
   const handleDownloadReceipt = async (id) => {
     try {
-      await download(`http://localhost:8020/api/waste/pdf/${id}`, `waste_${id}.pdf`);
+      await download(`${import.meta.env.VITE_API_BASE_URL}/api/waste/pdf/${id}`, `waste_${id}.pdf`);
       setSuccess('Waste receipt PDF downloaded');
     } catch (e) {
       setError(e.message || 'Failed to download receipt');
@@ -119,8 +119,8 @@ const WastePage = () => {
   const handleDownloadMonthly = async (e) => {
     e.preventDefault();
     try {
-      const y = report.year; const m = report.month;
-      await download(`http://localhost:8020/api/waste/pdf/monthly/${y}/${m}`, `waste_report_${y}_${m}.pdf`);
+        const y = report.year; const m = report.month;
+      await download(`${import.meta.env.VITE_API_BASE_URL}/api/waste/pdf/monthly/${y}/${m}`, `waste_report_${y}_${m}.pdf`);
       setSuccess('Monthly waste report PDF downloaded');
     } catch (e1) {
       setError(e1.message || 'Failed to download report');

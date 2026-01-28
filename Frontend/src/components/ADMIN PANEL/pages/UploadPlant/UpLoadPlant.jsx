@@ -106,7 +106,7 @@ const UpLoadPlant = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:8020/api/admin/plants/upload',
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/upload`,
         formData,
         {
           headers: {

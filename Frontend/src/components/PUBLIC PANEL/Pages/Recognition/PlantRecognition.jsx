@@ -54,7 +54,7 @@ const PlantRecognition = () => {
     formData.append("image", image);
 
     try {
-      const response = await axios.post("http://localhost:8020/api/web/plant-recognition/recognize", formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/web/plant-recognition/recognize`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       

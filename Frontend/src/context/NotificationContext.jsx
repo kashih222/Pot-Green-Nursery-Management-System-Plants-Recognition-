@@ -27,7 +27,7 @@ export const NotificationProvider = ({ children }) => {
     try {
       console.log('Fetching notifications with token:', token.substring(0, 10) + '...');
       
-      const response = await axios.get('http://localhost:8020/api/admin/notifications', {
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/notifications`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ export const NotificationProvider = ({ children }) => {
       console.log('Marking notification as read:', notificationId);
       
       const response = await axios.put(
-        `http://localhost:8020/api/admin/notifications/${notificationId}/read`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin/notifications/${notificationId}/read`,
         {},
         {
           headers: {
@@ -111,7 +111,7 @@ export const NotificationProvider = ({ children }) => {
       console.log('Removing notification:', notificationId);
       
       const response = await axios.delete(
-        `http://localhost:8020/api/admin/notifications/${notificationId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin/notifications/${notificationId}`,
         {
           headers: {
             'Authorization': `Bearer ${token}`,

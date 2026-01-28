@@ -26,7 +26,7 @@ const OrderHistory = () => {
         
         console.log('Fetching orders for user:', currentUser._id);
         
-        const response = await axios.get('http://localhost:8020/api/orders/myorders', {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/orders/myorders`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }

@@ -52,7 +52,7 @@ const EditPlant = () => {
   useEffect(() => {
     const fetchPlant = async () => {
       try {
-        const response = await axios.get(`http://localhost:8020/api/all-plants/products/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/all-plants/products/${id}`);
         const plant = response.data;
         setFormData({
           plantName: plant.plantName,
@@ -62,7 +62,7 @@ const EditPlant = () => {
           stockQuantity: plant.stockQuantity,
           rating: plant.rating || "",
         });
-        setPreviewImage(`http://localhost:8020/uploads/${plant.plantImage}`);
+        setPreviewImage(`${import.meta.env.VITE_API_BASE_URL}/uploads/${plant.plantImage}`);
       } catch (err) {
         console.error("Error fetching plant:", err);
         setError(err.message || "Failed to fetch plant details");
@@ -112,7 +112,7 @@ const EditPlant = () => {
       if (formData.plantImage) formDataToSend.append("plantImage", formData.plantImage);
 
       const response = await axios.put(
-        `http://localhost:8020/api/all-plants/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/all-plants/${id}`,
         formDataToSend,
         {
           headers: {

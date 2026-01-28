@@ -25,7 +25,7 @@ const MainPagesBoxes = () => {
     const fetchTotals = async () => {
       try {
         // Fetch total products
-        const productRes = await axios.get("http://localhost:8020/api/admin/plants/total", {
+        const productRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/total`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -33,11 +33,11 @@ const MainPagesBoxes = () => {
         setTotalProducts(productRes.data.total || 0);
 
         // Fetch total users
-        const userRes = await axios.get("http://localhost:8020/api/web/total-users/total");
+        const userRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/web/total-users/total`);
         setTotalUsers(userRes.data.total || 0);
 
         // Fetch all orders
-        const orderRes = await axios.get("http://localhost:8020/api/orders", {
+        const orderRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/orders`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -65,7 +65,7 @@ const MainPagesBoxes = () => {
 
           // Fetch service revenue from completed services
           try {
-            const serviceRes = await axios.get("http://localhost:8020/api/web/services/all", {
+            const serviceRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/web/services/all`, {
               headers: {
                 Authorization: `Bearer ${token}`
               }
@@ -90,7 +90,7 @@ const MainPagesBoxes = () => {
         }
         // Fetch purchases total quantity
         try {
-          const purchasesRes = await axios.get("http://localhost:8020/api/purchases", {
+          const purchasesRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/purchases`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (purchasesRes.data?.success) {
@@ -103,7 +103,7 @@ const MainPagesBoxes = () => {
 
         // Fetch waste total quantity
         try {
-          const wasteRes = await axios.get("http://localhost:8020/api/waste", {
+          const wasteRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/waste`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (wasteRes.data?.success) {

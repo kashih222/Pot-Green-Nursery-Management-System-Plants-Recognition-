@@ -18,7 +18,7 @@ const SignupForm = ({ switchToLogin, closeModal }) => {
     };
 
     axios
-      .post("http://localhost:8020/api/web/registerUser/insert", UserRegisterData)
+      .post(`${import.meta.env.VITE_API_BASE_URL}/api/web/registerUser/insert`, UserRegisterData)
       .then((res) => {
         console.log("Signup success:", res.data);
         closeModal(); // Close modal after successful signup

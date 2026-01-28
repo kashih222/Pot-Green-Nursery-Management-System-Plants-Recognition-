@@ -95,7 +95,7 @@ const ManageOrders = () => {
         return;
       }
 
-      let url = `http://localhost:8020/api/admin/orders?page=${currentPage}&limit=10`;
+      let url = `${import.meta.env.VITE_API_BASE_URL}/api/admin/orders?page=${currentPage}&limit=10`;
       
       if (statusFilter !== 'all') {
         url += `&status=${statusFilter}`;
@@ -151,7 +151,7 @@ const ManageOrders = () => {
       }
 
       const response = await axios.put(
-        `http://localhost:8020/api/admin/orders/${selectedOrder._id}/status`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin/orders/${selectedOrder._id}/status`,
         { status: newStatus },
         {
           headers: {

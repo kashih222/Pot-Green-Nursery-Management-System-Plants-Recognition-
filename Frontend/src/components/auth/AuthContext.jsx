@@ -96,7 +96,7 @@ export const AuthProvider = ({ children }) => {
 
         // Verify token with backend
         console.log('AuthContext - Verifying token with backend');
-        const response = await axios.get("http://localhost:8020/api/web/me", {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/web/me`, {
           headers: { Authorization: `Bearer ${storedToken}` }
         });
 
@@ -136,7 +136,7 @@ export const AuthProvider = ({ children }) => {
       handleLogout();
       
       const response = await axios.post(
-        "http://localhost:8020/api/web/auth/login",
+        `${import.meta.env.VITE_API_BASE_URL}/api/web/auth/login`,
         { email, password }
       );
 
@@ -183,7 +183,7 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log('AuthContext - Logging out');
       if (token) {
-        await axios.get("http://localhost:8020/api/web/logout-id/logouted", {
+        await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/web/logout-id/logouted`, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }

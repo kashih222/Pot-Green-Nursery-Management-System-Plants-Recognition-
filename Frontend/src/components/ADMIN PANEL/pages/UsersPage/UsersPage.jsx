@@ -11,7 +11,7 @@ const UserPage = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:8020/api/web/users/userslist");
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/web/users/userslist`);
       setUsers(Array.isArray(res.data) ? res.data : res.data.users || []);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -33,7 +33,7 @@ const UserPage = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:8020/api/web/userdelete/${id}`);
+        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/web/userdelete/${id}`);
         setUsers(users.filter((user) => user._id !== id));
         toast.success("User deleted successfully!", {
           style: {
@@ -57,7 +57,7 @@ const UserPage = () => {
   const updateUserRole = async (userId, newRole) => {
     try {
       setIsUpdating(true);
-      await axios.put(`http://localhost:8020/api/web/users/${userId}/role`, {
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/web/users/${userId}/role`, {
         role: newRole
       });
       

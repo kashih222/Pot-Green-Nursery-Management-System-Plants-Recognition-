@@ -48,7 +48,7 @@ const CheckoutForm = () => {
           throw new Error('Authentication required');
         }
 
-        const response = await axios.get('http://localhost:8020/api/cart', {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/cart`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -80,7 +80,7 @@ const CheckoutForm = () => {
               if (!imageUrl.startsWith('uploads/')) {
                 imageUrl = `uploads/${imageUrl}`;
               }
-              imageUrl = `http://localhost:8020/${imageUrl}`;
+              imageUrl = `${import.meta.env.VITE_API_BASE_URL}/${imageUrl}`;
             }
             return {
               ...item,
@@ -155,7 +155,7 @@ const CheckoutForm = () => {
 
       // Validate each product individually using the admin plants endpoint
       const stockResponse = await axios.get(
-        'http://localhost:8020/api/admin/plants/all',
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/all`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -206,7 +206,7 @@ const CheckoutForm = () => {
         throw new Error('Authentication required');
       }
 
-      const response = await axios.get('http://localhost:8020/api/cart', {
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/cart`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -221,7 +221,7 @@ const CheckoutForm = () => {
             if (!imageUrl.startsWith('uploads/')) {
               imageUrl = `uploads/${imageUrl}`;
             }
-            imageUrl = `http://localhost:8020/${imageUrl}`;
+            imageUrl = `${import.meta.env.VITE_API_BASE_URL}/${imageUrl}`;
           }
           return {
             ...item,
@@ -306,7 +306,7 @@ const CheckoutForm = () => {
         // Clean up image paths
         const imagePath = item.image || item.plantImage;
         const cleanedImagePath = imagePath ? 
-          imagePath.replace(/^http:\/\/localhost:8020\/uploads\//, '')
+          imagePath.replace(new RegExp(`^${import.meta.env.VITE_API_BASE_URL}\/uploads\/`), '')
             .replace(/^uploads\//, '')
             .replace(/^\//, '') : null;
 
@@ -384,7 +384,7 @@ const CheckoutForm = () => {
       try {
         // Create order with proper error handling
         const response = await axios.post(
-          'http://localhost:8020/api/orders',
+          `${import.meta.env.VITE_API_BASE_URL}/api/orders`,
           orderData,
           {
             headers: {
@@ -398,7 +398,7 @@ const CheckoutForm = () => {
         if (response.data.success) {
           // Clear cart after successful order
           try {
-            await axios.delete('http://localhost:8020/api/cart/clear', {
+            await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/cart/clear`, {
               headers: {
                 'Authorization': `Bearer ${token}`
               },

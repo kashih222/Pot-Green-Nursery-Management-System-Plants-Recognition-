@@ -48,7 +48,7 @@ const Navbar = () => {
   const location = useLocation();
 
   // API Configuration
-  const API_BASE_URL = "http://localhost:8020";
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Base64 encoded SVG as a fallback image
   const fallbackImage = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2NjYyIgZD0iTTE5IDVIMWEyIDIgMCAwMC0yIDJ2MTRhMiAyIDAgMDAyIDJoMThhMiAyIDAgMDAyLTJWN2EyIDIgMCAwMC0yLTJtMCAxNkgxVjdoMTh2MTRNMTcgMTFhNCA0IDAgMDAtNC00YTQgNCAwIDAwLTQgNCA0IDQgMCAwMDQgNCA0IDQgMCAwMDQtNHoiLz48L3N2Zz4=';
@@ -500,7 +500,7 @@ const Navbar = () => {
                     <>
                       {userDetails?.profilePic ? (
                         <img
-                          src={`http://localhost:8020/uploads/${userDetails.profilePic}`}
+                          src={`${API_BASE_URL}/uploads/${userDetails.profilePic}`}
                           alt="Profile"
                           className="w-8 h-8 rounded-full object-cover border-2 border-yellow-500"
                           onError={(e) => {
@@ -532,7 +532,7 @@ const Navbar = () => {
                           <div className="rounded-full w-8 h-8 overflow-hidden border-2 border-yellow-500 bg-yellow-400 flex items-center justify-center">
                             {userDetails?.profilePic ? (
                               <img
-                                src={`http://localhost:8020/uploads/${userDetails.profilePic}`}
+                                src={`${API_BASE_URL}/uploads/${userDetails.profilePic}`}
                                 alt={userDetails?.name || 'User'}
                                 className="object-cover w-full h-full"
                                 onError={(e) => {

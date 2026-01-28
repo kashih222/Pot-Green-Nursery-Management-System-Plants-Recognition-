@@ -18,7 +18,7 @@ import {
 import { format } from 'date-fns';
 import { FaUsers, FaShoppingCart, FaBox, FaChartLine } from 'react-icons/fa';
 
-const API_BASE_URL = 'http://localhost:8020';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const AnalyticsPage = () => {
   const [orderStats, setOrderStats] = useState(null);

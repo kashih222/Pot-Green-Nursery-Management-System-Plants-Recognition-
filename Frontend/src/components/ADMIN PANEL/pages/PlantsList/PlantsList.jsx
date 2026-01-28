@@ -82,7 +82,7 @@ const PlantsList = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:8020/api/admin/plants/all", {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/all`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -155,7 +155,7 @@ const PlantsList = () => {
   const handleDeleteConfirm = async () => {
     try {
       setLoading(true);
-      const response = await axios.delete(`http://localhost:8020/api/admin/plants/${plantToDelete._id}`, {
+      const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/${plantToDelete._id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -268,7 +268,7 @@ const PlantsList = () => {
       });
 
       const response = await axios.put(
-        `http://localhost:8020/api/admin/plants/${editingPlant._id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/admin/plants/${editingPlant._id}`,
         formData,
         {
           headers: {
@@ -390,7 +390,7 @@ const PlantsList = () => {
                 <td className="p-3 text-green-950 flex items-center justify-center">
                   <div className="w-20 h-20 overflow-hidden rounded-lg bg-red-50 flex items-center justify-center">
                     <img
-                      src={`http://localhost:8020/uploads/${plant.plantImage}`}
+                      src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${plant.plantImage}`}
                       alt={plant.plantName}
                       className="object-cover w-full h-full"
                       onError={(e) => {
