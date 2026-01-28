@@ -2,6 +2,10 @@ import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { LuLeaf, LuFlower  } from "react-icons/lu";
 import { Link } from "react-router";
+import bosterfern from "../../assets/img/bosterfern-cart-1.png"
+import deserrose from "../../assets/img/deser-rose-cart-4.png"
+import rubberplant from "../../assets/img/rubberplant-cart-2.png"
+import peacelily from "../../assets/img/peaceliliy-cart-3.png"
 
 const Popular = () => {
   return (
@@ -15,7 +19,7 @@ const Popular = () => {
             <div className='container w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-36 '>
                 {/* card_1 */}
                 <div className=' popular__card bg-green-950 p-10 pt-24 rounded-md relative  '>
-                    <img src="src/assets/img/cart-1.png" alt="popular_img" className='w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
+                    <img src={bosterfern} alt="popular_img" className='w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
 
                     <p>Nephrolepis exaltata</p>
                     <h3>Boston Fern</h3>
@@ -36,7 +40,7 @@ const Popular = () => {
 
                 {/* card_2 */}
                 <div className=' popular__card bg-green-950 p-10 pt-24 rounded-md relative '>
-                     <img src="src/assets/img/cart-2.png" alt="popular_img" className='w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
+                     <img src={rubberplant} alt="popular_img" className='w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
                      <p>Ficus elastica</p>
                      <h3>Rubber Plant</h3>
                      <div className='flex text-yellow-500 text-xs py-3'>
@@ -54,7 +58,7 @@ const Popular = () => {
 
                  {/* card_3 */}
                  <div className=' popular__card bg-green-950 p-10 pt-24 rounded-md relative '>
-                     <img src="src/assets/img/cart-3.png" alt="popular_img" className='w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
+                     <img src={peacelily} alt="popular_img" className='w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
                      <p>Spathiphyllum wallisii</p>
                      <h3>Peace Lily</h3>
                      <div className='flex text-yellow-500 text-xs py-3'>
@@ -72,7 +76,7 @@ const Popular = () => {
 
                    {/* card_4 */}
                  <div className=' popular__card bg-green-950 p-10 pt-24 rounded-md relative '>
-                     <img src="src/assets/img/cart-4.png" alt="popular_img" className='w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
+                     <img src={deserrose} alt="popular_img" className='w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
                      <p>Adenium obesum</p>
                      <h3>Desert Rose</h3>
                      <div className='flex text-yellow-500 text-xs py-3'>
