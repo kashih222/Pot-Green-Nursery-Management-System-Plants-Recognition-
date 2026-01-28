@@ -18,6 +18,7 @@ import {
 import { useCart } from '../../context/CartContext';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import logo from "../../assets/img/logo.png"
 
 const Navbar = () => {
   const {
@@ -265,7 +266,7 @@ const Navbar = () => {
       <header className="bg-green-950 fixed w-full top-0 left-0 z-50">
         <nav className="container flex items-center justify-between h-16 sm:h-20 border-b-2 border-yellow-500 px-4">
           <Link to="/">
-            <img src="/src/assets/img/logo.png" className="w-24 h-24" alt="logo" />
+            <img src={logo} className="w-24 h-24" alt="logo" />
           </Link>
 
           {/* Mobile Menu */}
@@ -630,7 +631,7 @@ const Navbar = () => {
               ✖
             </button>
             <div className="flex justify-center">
-              <img src="/src/assets/img/logo.png" className="w-16 h-16 mb-3" alt="logo" />
+              <img src={logo} className="w-16 h-16 mb-3" alt="logo" />
             </div>
 
             {isSignup ? (

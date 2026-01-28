@@ -1,10 +1,12 @@
-
+import plant1 from "../../../../assets/img/plant-1.png"
+import plant2 from "../../../../assets/img/plant-2.png"
+import leaf3 from "../../../../assets/img/leaf-3.png"
 const About = () => {
   return (
     <div>
       <section id='about' className='relative overflow-hidden bg-green-950'>
         <div className='absolute -top-8 -right-12 opacity-50 '>
-            <img src="src/assets/img/leaf-3.png" alt="leaf3_image" className='w-40 md:w-52 xl:w-64 ' />
+            <img src={leaf3} alt="leaf3_image" className='w-40 md:w-52 xl:w-64 ' />
         </div>
         <div className='flex flex-col items-center gap-3 text-center mb-10 md:mb-20 font-Jost'>
             <h2 className='tittle'>About Us</h2>
@@ -16,7 +18,7 @@ const About = () => {
             <div className='flex flex-col items-center lg:flex-row gap-5 '>
                 {/* image */}
                 <div className='w-full lg:w-1/2 '>
-                    <img src="src/assets/img/plant-1.png" alt="About-image" className='w-full sm:w-2/3 lg:w-full xl:w-2/3 mx-auto ' />
+                    <img src={plant1} alt="About-image" className='w-full sm:w-2/3 lg:w-full xl:w-2/3 mx-auto ' />
                 </div>
 
                 {/* content */}
@@ -37,7 +39,7 @@ const About = () => {
              <div className='flex flex-col items-center gap-5 lg:flex-row-reverse'>
                  {/* image */}
                  <div className='w-full lg:w-1/2 '>
-                     <img src="src/assets/img/plant-2.png" alt="About-image" className='w-full sm:w-2/3 lg:w-full xl:w-2/3 mx-auto ' />
+                     <img src={plant2} alt="About-image" className='w-full sm:w-2/3 lg:w-full xl:w-2/3 mx-auto ' />
                  </div>
                  {/* content */}
                  <div className='w-full lg:w-1/2 '>
@@ -58,7 +60,7 @@ const About = () => {
             <div className='flex flex-col items-center lg:flex-row gap-5 '>
                 {/* image */}
                 <div className='w-full lg:w-1/2 '>
-                    <img src="src/assets/img/plant-1.png" alt="About-image" className='w-full sm:w-2/3 lg:w-full xl:w-2/3 mx-auto ' />
+                    <img src={plant1} alt="About-image" className='w-full sm:w-2/3 lg:w-full xl:w-2/3 mx-auto ' />
                 </div>
 
                 {/* content */}
@@ -79,7 +81,7 @@ const About = () => {
             <div className='flex flex-col items-center gap-5 lg:flex-row-reverse'>
                  {/* image */}
                  <div className='w-full lg:w-1/2 '>
-                     <img src="src/assets/img/plant-2.png" alt="About-image" className='w-full sm:w-2/3 lg:w-full xl:w-2/3 mx-auto ' />
+                     <img src={plant2} alt="About-image" className='w-full sm:w-2/3 lg:w-full xl:w-2/3 mx-auto ' />
                  </div>
                  {/* content */}
                  <div className='w-full lg:w-1/2 '>

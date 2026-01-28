@@ -12,6 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import LoginForm from "../../LoginForm";
 import SignupForm from "../../SignupForm";
+import logo from "../../../../assets/img/logo.png"
 
 const ServicesPage = () => {
   const { currentUser } = useAuth();
@@ -785,7 +786,7 @@ const ServicesPage = () => {
               ← Back
             </button>
             <div className="flex justify-center">
-              <img src="/src/assets/img/logo.png" className="w-16 h-16 mb-3" alt="logo" />
+              <img src={logo} className="w-16 h-16 mb-3" alt="logo" />
             </div>
 
             {isSignup ? (

@@ -13,6 +13,7 @@ import { TbTrash } from "react-icons/tb";
 import { BsX } from "react-icons/bs";
 import { Collapse } from "react-collapse";
 import { useAuth } from "../auth/AuthContext";
+import logo from "../../assets/img/logo.png"
 
 const Sidebar = ({ isOpen }) => {
   const [subMenuIndex, setSubMenuIndex] = useState(null);
@@ -60,7 +61,7 @@ const Sidebar = ({ isOpen }) => {
       <div className={`pt-16 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
         <div className="logo flex items-center justify-center w-full py-8 border-b border-yellow-500/20 bg-green-950">
           <img
-            src="src/assets/img/logo.png"
+            src={logo}
             alt="Company Logo"
             className="w-[120px] h-auto object-contain transition-transform duration-300 hover:scale-110"
           />

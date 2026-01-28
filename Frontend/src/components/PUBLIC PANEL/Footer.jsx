@@ -1,6 +1,7 @@
 import { CiPaperplane } from "react-icons/ci";
 import { FaWhatsapp, FaInstagram, FaMapMarkerAlt, FaLeaf } from "react-icons/fa";
 import { Link } from "react-router";
+import floral1 from "../../assets/img/floral-1.png"
 
 const Footer = () => {
     return (
@@ -89,7 +90,7 @@ const Footer = () => {
 
                     {/* floral-image */}
                     <div className='absolute bottom-0 left-0 opacity-20 pointer-events-none '>
-                        <img src="src/assets/img/floral-1.png" alt="Footer_image" className='w-full lg:w-1/2 ' />
+                        <img src={floral1} alt="Footer_image" className='w-full lg:w-1/2 ' />
                     </div>
 
 

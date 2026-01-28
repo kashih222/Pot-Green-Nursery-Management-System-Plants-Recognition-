@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../../auth/AuthContext';
 import { Button } from '@mui/material';
+import logo from "../../../../assets/img/logo.png"
 
 const OutOfStockPage = () => {
   const { token } = useAuth();
@@ -156,7 +157,7 @@ const OutOfStockPage = () => {
                             src={`http://localhost:8020/uploads/${p.plantImage}`}
                             alt={p.plantName}
                             className="object-cover w-full h-full"
-                            onError={(e) => { e.currentTarget.src = 'src/assets/img/logo.png'; }}
+                            onError={(e) => { e.currentTarget.src = {logo}; }}
                           />
                         </div>
                       </td>
