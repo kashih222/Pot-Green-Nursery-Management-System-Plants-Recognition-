@@ -18,7 +18,7 @@ import {
 import { useCart } from '../../context/CartContext';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import logo from "../../assets/img/logo.png"
+import logo from "../../../public/img/logo.png"
 
 const Navbar = () => {
   const {
@@ -53,7 +53,6 @@ const Navbar = () => {
   // Base64 encoded SVG as a fallback image
   const fallbackImage = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2NjYyIgZD0iTTE5IDVIMWEyIDIgMCAwMC0yIDJ2MTRhMiAyIDAgMDAyIDJoMThhMiAyIDAgMDAyLTJWN2EyIDIgMCAwMC0yLTJtMCAxNkgxVjdoMTh2MTRNMTcgMTFhNCA0IDAgMDAtNC00YTQgNCAwIDAwLTQgNCA0IDQgMCAwMDQgNCA0IDQgMCAwMDQtNHoiLz48L3N2Zz4=';
 
-  // Get user ID regardless of whether it's stored as id or _id
   const userId = user?.id || user?._id;
 
   useEffect(() => {

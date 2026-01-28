@@ -12,7 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import LoginForm from "../../LoginForm";
 import SignupForm from "../../SignupForm";
-import logo from "../../../../assets/img/logo.png"
+import logo from "../../../../../public/img/logo.png"
 
 const ServicesPage = () => {
   const { currentUser } = useAuth();

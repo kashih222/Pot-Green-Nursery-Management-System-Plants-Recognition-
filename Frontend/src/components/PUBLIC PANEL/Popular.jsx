@@ -2,10 +2,10 @@ import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { LuLeaf, LuFlower  } from "react-icons/lu";
 import { Link } from "react-router";
-import bosterfern from "../../assets/img/bosterfern-cart-1.png"
-import deserrose from "../../assets/img/deser-rose-cart-4.png"
-import rubberplant from "../../assets/img/rubberplant-cart-2.png"
-import peacelily from "../../assets/img/peaceliliy-cart-3.png"
+import bosterfern from "../../../public/img/bosterfern-cart-1.png"
+import deserrose from "../../../public/img/deser-rose-cart-4.png"
+import rubberplant from "../../../public/img/rubberplant-cart-2.png"
+import peacelily from "../../../public/img/peaceliliy-cart-3.png"
 
 const Popular = () => {
   return (

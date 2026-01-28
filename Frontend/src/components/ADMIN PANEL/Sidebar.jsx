@@ -13,7 +13,7 @@ import { TbTrash } from "react-icons/tb";
 import { BsX } from "react-icons/bs";
 import { Collapse } from "react-collapse";
 import { useAuth } from "../auth/AuthContext";
-import logo from "../../assets/img/logo.png"
+import logo from "../../../public/img/logo.png"
 
 const Sidebar = ({ isOpen }) => {
   const [subMenuIndex, setSubMenuIndex] = useState(null);

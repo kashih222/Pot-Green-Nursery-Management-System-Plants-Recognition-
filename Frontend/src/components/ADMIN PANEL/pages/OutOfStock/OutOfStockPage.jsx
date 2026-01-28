@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../../auth/AuthContext';
 import { Button } from '@mui/material';
-import logo from "../../../../assets/img/logo.png"
+import logo from "../../../../../public/img/logo.png"
 
 const OutOfStockPage = () => {
   const { token } = useAuth();

@@ -1,7 +1,7 @@
 import { CiPaperplane } from "react-icons/ci";
 import { FaWhatsapp, FaInstagram, FaMapMarkerAlt, FaLeaf } from "react-icons/fa";
 import { Link } from "react-router";
-import floral1 from "../../assets/img/floral-1.png"
+import floral1 from "../../../public/img/floral-1.png"
 
 const Footer = () => {
     return (

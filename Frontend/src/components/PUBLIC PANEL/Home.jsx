@@ -2,7 +2,7 @@ import { LuLeaf, LuFlower } from "react-icons/lu";
 import { FaWhatsapp, FaMapMarkerAlt, FaInstagram, FaLeaf } from "react-icons/fa";
 import { PiPottedPlantBold } from "react-icons/pi";
 import { Link } from "react-router";
-import homepng from "../../assets/img/home.png"
+import homepng from "../../../public/img/home.png"
 
 const Home = () => {
   return (

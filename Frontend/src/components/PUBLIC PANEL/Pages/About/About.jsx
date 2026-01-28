@@ -1,6 +1,6 @@
-import plant1 from "../../../../assets/img/plant-1.png"
-import plant2 from "../../../../assets/img/plant-2.png"
-import leaf3 from "../../../../assets/img/leaf-3.png"
+import plant1 from "../../../../../public/img/plant-1.png"
+import plant2 from "../../../../../public/img/plant-2.png"
+import leaf3 from "../../../../../public/img/leaf-3.png"
 const About = () => {
   return (
     <div>
