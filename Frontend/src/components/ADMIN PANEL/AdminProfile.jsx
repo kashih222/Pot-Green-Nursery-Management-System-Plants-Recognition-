@@ -10,7 +10,7 @@ const adminInfo = {
   phone: '+92 300 1234567',
   joined: '2023-01-15',
   location: 'Lahore, Pakistan',
-  avatar: '', // You can use a URL or leave empty for default
+  avatar: '', 
   bio: 'Passionate administrator with expertise in system management and team leadership.',
   stats: {
     projects: 45,

@@ -48,7 +48,7 @@ def predict():
         # Predict
         prediction = model.predict(input_data)
         predicted_index = int(np.argmax(prediction))
-        prediction_array = prediction[0].tolist()  # Convert to JSON serializable
+        prediction_array = prediction[0].tolist() 
 
         # Log for debugging
         print("Predicted index:", predicted_index)

@@ -32,7 +32,6 @@ const AppRoutes = () => {
 
   // Protected Route component
   const ProtectedRoute = ({ children }) => {
-    // Call isAuthenticated as a function
     if (!isAuthenticated()) {
       return <Navigate to="/" />;
     }

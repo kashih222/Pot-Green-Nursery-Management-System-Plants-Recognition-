@@ -55,7 +55,7 @@ app.use('/uploads', express.static('uploads'));
 // Web Routes
 app.use('/api/web/registerUser', registerUserRouter);
 app.use('/api/web/users', userRouter);
-app.use('/api/web', userRouter); // This route will handle /api/web/me
+app.use('/api/web', userRouter); 
 app.use('/api/web/auth', authRoutes);
 app.use('/api/web/total-users', userRouter);
 app.use('/api/web/logout-id', authRoutes);
@@ -83,7 +83,6 @@ app.use('/api/purchases', purchaseRoutes);
 // Waste Routes
 app.use('/api/waste', wasteRoutes);
 
-// MongoDB Connection with enhanced error handling
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -102,7 +101,6 @@ mongoose.connect(MONGODB_URI, {
   process.exit(1);
 });
 
-// Enhanced error handling middleware
 app.use((err, req, res, next) => {
   console.error('🔴 Server Error:', err.stack);
   res.status(500).json({
