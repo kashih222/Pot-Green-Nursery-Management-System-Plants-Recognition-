@@ -18,11 +18,26 @@ router.post('/upload', upload.single('plantImage'), async (req, res) => {
     
     // Validate required fields
     if (!plantName || !prices || !category || !stockQuantity || !req.file) {
+      console.error('Validation failed:', { 
+        hasPlantName: !!plantName, 
+        hasPrices: !!prices, 
+        hasCategory: !!category, 
+        hasStock: !!stockQuantity, 
+        hasFile: !!req.file 
+      });
       return res.status(400).json({ 
         success: false,
         error: 'All fields are required and image must be uploaded.' 
       });
     }
+
+    // Log file details for debugging
+    console.log('Processing file upload:', {
+      path: req.file.path,
+      originalname: req.file.originalname,
+      size: req.file.size,
+      mimetype: req.file.mimetype
+    });
 
     // Validate prices and stock quantities are valid numbers
     const validateSizeData = (data, fieldName) => {
