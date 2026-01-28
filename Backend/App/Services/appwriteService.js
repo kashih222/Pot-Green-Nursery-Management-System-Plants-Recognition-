@@ -43,10 +43,21 @@ const uploadFile = async (filePath, fileName, targetBucketId = BUCKET_ID) => {
       throw new Error(`File not found at ${filePath}`);
     }
 
-    // Create InputFile from path
-    const inputFile = InputFile.fromPath(filePath, fileName);
+    // Create InputFile
+    let inputFile;
+    try {
+      // Try fromPath first
+      inputFile = InputFile.fromPath(filePath, fileName);
+    } catch (err) {
+      console.warn("InputFile.fromPath failed, trying fromStream:", err);
+      // Fallback to stream if fromPath fails (common in some serverless envs)
+      const stream = fs.createReadStream(filePath);
+      const stats = fs.statSync(filePath);
+      inputFile = InputFile.fromStream(stream, fileName, stats.size);
+    }
 
     // Upload to Appwrite
+    console.log(`Uploading file: ${fileName} to bucket: ${targetBucketId}`);
     const result = await storage.createFile(targetBucketId, ID.unique(), inputFile);
 
     console.log("Appwrite upload success:", result.$id);

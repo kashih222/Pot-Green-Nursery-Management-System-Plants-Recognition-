@@ -56,7 +56,8 @@ router.post('/upload', upload.single('plantImage'), async (req, res) => {
         console.error('Appwrite upload failed:', uploadError);
         return res.status(500).json({
           success: false,
-          error: `Failed to upload image to storage: ${uploadError.message}`
+          error: `Failed to upload image to storage: ${uploadError.message || uploadError}`,
+          details: uploadError // Return full error for debugging
         });
       }
     }
