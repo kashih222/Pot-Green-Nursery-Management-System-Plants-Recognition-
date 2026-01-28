@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { User, Mail, Calendar, Edit3, Shield, Save, X, Eye, EyeOff, Camera } from 'lucide-react';
 import axios from '../../utils/axios';
 import { useAuth } from '../auth/AuthContext';
+import { Helmet } from 'react-helmet-async';
 
 const PublicProfile = ({ isOpen, onClose }) => {
   const { updateUser } = useAuth();
@@ -296,6 +297,9 @@ const PublicProfile = ({ isOpen, onClose }) => {
       aria-modal="true"
       aria-labelledby="profile-modal-title"
     >
+      <Helmet>
+              <title>My Profile | Pot Green Nursary</title>
+            </Helmet>
       <div 
         ref={modalRef}
         className="bg-green-900 text-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-green-700 shadow-2xl relative" 

@@ -5,6 +5,7 @@ import { useCart } from '../../../../context/CartContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const CheckoutForm = () => {
   const { currentUser, token } = useAuth();
@@ -306,7 +307,7 @@ const CheckoutForm = () => {
         // Clean up image paths
         const imagePath = item.image || item.plantImage;
         const cleanedImagePath = imagePath ? 
-          imagePath.replace(new RegExp(`^${import.meta.env.VITE_API_BASE_URL}\/uploads\/`), '')
+          imagePath.replace(new RegExp(`^${import.meta.env.VITE_API_BASE_URL}/uploads/`), '')
             .replace(/^uploads\//, '')
             .replace(/^\//, '') : null;
 
@@ -503,6 +504,10 @@ const CheckoutForm = () => {
   }
 
   return (
+  <>
+  <Helmet>
+      <title> checkout | Pot Green Nursery</title>
+  </Helmet>
     <div className="min-h-screen bg-gradient-to-b from-green-900 to-green-950 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
@@ -729,6 +734,7 @@ const CheckoutForm = () => {
         </div>
       </div>
     </div>
+  </>
   );
 };
 

@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../../auth/AuthContext';
 import { Button, CircularProgress } from '@mui/material';
+import { Helmet } from 'react-helmet-async';
 
 const WastePage = () => {
   const { token } = useAuth();
@@ -131,6 +132,9 @@ const WastePage = () => {
 
   return (
     <div className="p-6 bg-green-950 rounded-lg shadow space-y-6">
+      <Helmet>
+               <title> Wastage | Pot Green Nursery</title>
+            </Helmet>
       <h2 className="text-2xl font-bold text-yellow-500">Wasted Plants</h2>
 
       {loading ? (

@@ -13,6 +13,7 @@ import {
   CircularProgress,
   Alert,
 } from "@mui/material";
+import { Helmet } from 'react-helmet-async';
 
 const EditPlant = () => {
   const { id } = useParams();
@@ -150,6 +151,9 @@ const EditPlant = () => {
 
   return (
     <div className="p-6 bg-green-950 rounded-lg shadow">
+      <Helmet>
+                    <title>Update Info | Pot Green Nursary</title>
+                  </Helmet>
       <Typography variant="h4" className="text-yellow-500 mb-6">
         Edit Plant
       </Typography>

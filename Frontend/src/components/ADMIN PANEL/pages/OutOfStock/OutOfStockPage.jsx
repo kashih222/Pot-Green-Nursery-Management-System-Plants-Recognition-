@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../../../auth/AuthContext';
 import { Button } from '@mui/material';
 import logo from "../../../../../public/img/logo.png"
+import { Helmet } from 'react-helmet-async';
 
 const OutOfStockPage = () => {
   const { token } = useAuth();
@@ -114,6 +115,9 @@ const OutOfStockPage = () => {
 
   return (
     <div className="p-6 bg-green-950 rounded-lg shadow space-y-6">
+      <Helmet>
+               <title> Out of stock Plants | Pot Green Nursery</title>
+            </Helmet>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <h2 className="text-2xl font-bold text-yellow-500">Out of Stock Plants</h2>
         <div className="flex gap-2 items-center">

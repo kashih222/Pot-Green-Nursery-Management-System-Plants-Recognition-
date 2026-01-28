@@ -25,6 +25,7 @@ import { IoIosPricetags } from "react-icons/io";
 import { MdCategory } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
 import { useAuth } from '../../../auth/AuthContext';
+import { Helmet } from 'react-helmet-async';
 
 const PlantsList = () => {
   const { token } = useAuth();
@@ -361,6 +362,9 @@ const PlantsList = () => {
 
   return (
     <div className="p-6 bg-green-950 rounded-lg shadow space-y-6">
+      <Helmet>
+         <title> Products-List | Pot Green Nursery</title>
+      </Helmet>
       {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
         <h2 className="text-2xl font-bold text-yellow-500 mb-4 md:mb-0">

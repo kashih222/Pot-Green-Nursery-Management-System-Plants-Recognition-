@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../../auth/AuthContext';
 import { Button, CircularProgress } from '@mui/material';
+import { Helmet } from 'react-helmet-async';
 
 const PurchasesPage = () => {
   const { token } = useAuth();
@@ -135,6 +136,9 @@ const PurchasesPage = () => {
 
   return (
     <div className="p-6 bg-green-950 rounded-lg shadow space-y-6">
+      <Helmet>
+        <title> Purchases | Pot Green Nursery</title>
+      </Helmet>
       <h2 className="text-2xl font-bold text-yellow-500">Purchases</h2>
 
       {loading ? (

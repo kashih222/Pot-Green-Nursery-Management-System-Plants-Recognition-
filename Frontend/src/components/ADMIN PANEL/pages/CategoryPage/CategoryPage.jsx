@@ -15,6 +15,7 @@ import { TbEdit, TbCurrencyRupee, TbPlant2 } from 'react-icons/tb';
 import { GiPlantWatering, GiTreeGrowth, GiFruitTree } from 'react-icons/gi';
 import { useAuth } from '../../../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const CategoryPage = () => {
   const { token } = useAuth();
@@ -242,6 +243,9 @@ const CategoryPage = () => {
 
   return (
     <div className="min-h-screen bg-green-950 p-6">
+      <Helmet>
+               <title> Plants-Category | Pot Green Nursery</title>
+            </Helmet>
       {/* Header Section with improved styling */}
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-yellow-500 flex items-center gap-2">

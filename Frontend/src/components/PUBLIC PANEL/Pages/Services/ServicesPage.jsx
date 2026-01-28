@@ -13,6 +13,7 @@ import axios from "axios";
 import LoginForm from "../../LoginForm";
 import SignupForm from "../../SignupForm";
 import logo from "../../../../../public/img/logo.png"
+import { Helmet } from 'react-helmet-async';
 
 const ServicesPage = () => {
   const { currentUser } = useAuth();
@@ -238,6 +239,9 @@ const ServicesPage = () => {
 
   return (
     <div className="bg-white text-green-900 pt-40">
+      <Helmet>
+            <title> Services | Pot Green Nursery</title>
+        </Helmet>
       <div className="container w-full grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {/* card1 */}
         <div

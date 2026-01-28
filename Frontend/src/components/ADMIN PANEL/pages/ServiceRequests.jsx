@@ -13,6 +13,7 @@ import {
 } from 'react-icons/fa';
 import { MdPendingActions, MdCheckCircle, MdCancel } from 'react-icons/md';
 import toast, { Toaster } from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const ServiceRequests = () => {
   const [serviceRequests, setServiceRequests] = useState([]);
@@ -191,6 +192,9 @@ const ServiceRequests = () => {
 
   return (
     <div className="p-6 bg-green-900 min-h-screen">
+      <Helmet>
+               <title> Service Requests | Pot Green Nursery</title>
+            </Helmet>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">

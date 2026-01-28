@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { User, Mail, Phone, Calendar, Edit3, MapPin, Award, Shield, Save, X, Eye, EyeOff, Camera } from 'lucide-react';
 import axios from '../../utils/axios';
 import { useAuth } from '../auth/AuthContext';
+import { Helmet } from 'react-helmet-async';
 
 const adminInfo = {
   name: 'Admin User',
@@ -203,6 +204,9 @@ const AdminProfile = () => {
 
   return (
     <div className="bg-green-900 text-white min-h-screen w-full flex items-center justify-center p-4">
+      <Helmet>
+        <title>Admin Profile | Pot Green Nursary</title>
+      </Helmet>
       <div className="w-full max-w-4xl">
         {/* Main Profile Card */}
         <div className="bg-gradient-to-br from-green-800 to-green-900 rounded-3xl border border-green-700 shadow-2xl overflow-hidden">

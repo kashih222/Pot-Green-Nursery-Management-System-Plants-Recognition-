@@ -11,6 +11,7 @@ import { useAuth } from '../../auth/AuthContext';
 import axiosInstance from '../../../utils/axios';
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { Helmet } from 'react-helmet-async';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -464,6 +465,9 @@ const Orders = () => {
 
   return (
     <div className="p-6 bg-green-950 rounded-lg shadow space-y-6">
+      <Helmet>
+               <title> Orders | Pot Green Nursery</title>
+            </Helmet>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-yellow-500">
           Orders Management ({orders.length} total)

@@ -12,6 +12,7 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from '../../../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const UpLoadPlant = () => {
   const [preview, setPreview] = useState(null);
@@ -154,6 +155,9 @@ const UpLoadPlant = () => {
 
   return (
     <div className="p-6 bg-green-950 rounded-lg shadow-lg border border-green-50">
+      <Helmet>
+               <title> Upload-Plant | Pot Green Nursery</title>
+            </Helmet>
       <ToastContainer />
       <div className="mb-8 mt-[-220px]">
         <h2 className="text-3xl font-bold text-white flex items-center gap-2 mt-0">

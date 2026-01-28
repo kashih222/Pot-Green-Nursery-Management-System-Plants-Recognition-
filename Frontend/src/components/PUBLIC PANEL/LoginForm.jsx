@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from "../../components/auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 
 const LoginForm = ({ switchToSignup, closeModal, onLoginSuccess }) => {
   const { login } = useAuth();
@@ -88,6 +89,9 @@ const LoginForm = ({ switchToSignup, closeModal, onLoginSuccess }) => {
 
   return (
     <form onSubmit={handleLogin}>
+      <Helmet>
+            <title> Login | Pot Green Nursery</title>
+        </Helmet>
       <h2 className="text-xl font-semibold mb-4 text-center">Login</h2>
       
       {error && (

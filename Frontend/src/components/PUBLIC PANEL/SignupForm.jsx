@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from "axios";
+import { Helmet } from 'react-helmet-async';
 
 const SignupForm = ({ switchToLogin, closeModal }) => {
   const [firstName, setFirstName] = useState("");
@@ -33,6 +34,9 @@ const SignupForm = ({ switchToLogin, closeModal }) => {
 
   return (
     <form onSubmit={handleSignup}>
+      <Helmet>
+            <title> SignUp | Pot Green Nursery</title>
+        </Helmet>
       <h2 className="text-xl font-semibold mb-4 text-center">Sign Up</h2>
 
       <input

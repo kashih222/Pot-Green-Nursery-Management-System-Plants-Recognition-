@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { IoAddOutline } from "react-icons/io5";
 import AnalyticsPage from "./pages/Analytics Page/AnalyticsPage";
+import { Helmet } from 'react-helmet-async';
 
 const MainPage = () => {
   const { currentUser } = useAuth();
@@ -25,6 +26,9 @@ const MainPage = () => {
 
   return (
     <div className="px-2.5 mt-2.5 space-y-6">
+      <Helmet>
+         <title> Dashboard | Pot Green Nursery</title>
+      </Helmet>
       {/* Greeting Section */}
       <div className="p-5 bg-green-950 rounded-lg flex flex-col md:flex-row items-center justify-between gap-6 text-white">
         <div className="flex-1">

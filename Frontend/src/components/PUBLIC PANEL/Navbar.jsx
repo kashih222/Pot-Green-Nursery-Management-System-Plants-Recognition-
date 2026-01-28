@@ -19,6 +19,7 @@ import { useCart } from '../../context/CartContext';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from "../../../public/img/logo.png"
+import { Helmet } from 'react-helmet-async';
 
 const Navbar = () => {
   const {
@@ -343,6 +344,9 @@ const Navbar = () => {
                 {/* Cart Modal */}
                 {showCartModal && (
                   <div className="fixed inset-0 bg-black bg-opacity-50 z-[1000] flex justify-end">
+                    <Helmet>
+                                  <title>Cart | Pot Green Nursary</title>
+                                </Helmet>
                     <div className="bg-white w-full max-w-md h-full overflow-y-auto animate-slideIn">
                       <div className="p-4 border-b border-gray-200 flex justify-between items-center">
                         <h2 className="text-lg font-bold text-black">Your Cart ({cart?.totalItems || 0})</h2>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from 'react-helmet-async';
 
 const UserPage = () => {
   const [users, setUsers] = useState([]);
@@ -96,6 +97,9 @@ const UserPage = () => {
 
   return (
     <div className="p-6 bg-green-50 min-h-screen">
+      <Helmet>
+               <title> Users | Pot Green Nursery</title>
+            </Helmet>
       <Toaster position="top-right" reverseOrder={false} />
       <h1 className="text-3xl font-bold text-yellow-500 mb-6">Registered Users</h1>
 

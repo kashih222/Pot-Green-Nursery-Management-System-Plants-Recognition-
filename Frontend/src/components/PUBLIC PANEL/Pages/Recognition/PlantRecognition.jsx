@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import axios from "axios";
 import { FaUpload, FaLeaf, FaSpinner, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { Helmet } from 'react-helmet-async';
 
 const PlantRecognition = () => {
   const [image, setImage] = useState(null);
@@ -87,6 +88,9 @@ const PlantRecognition = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 py-12 px-4 mt-20">
+      <Helmet>
+            <title> Recognition | Pot Green Nursery</title>
+        </Helmet>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

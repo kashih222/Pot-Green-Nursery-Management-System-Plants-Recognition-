@@ -1,9 +1,13 @@
 import plant1 from "../../../../../public/img/plant-1.png"
 import plant2 from "../../../../../public/img/plant-2.png"
 import leaf3 from "../../../../../public/img/leaf-3.png"
+import { Helmet } from "react-helmet-async"
 const About = () => {
   return (
     <div>
+        <Helmet>
+          <title> About | Pot Green Nursery</title>
+        </Helmet>
       <section id='about' className='relative overflow-hidden bg-green-950'>
         <div className='absolute -top-8 -right-12 opacity-50 '>
             <img src={leaf3} alt="leaf3_image" className='w-40 md:w-52 xl:w-64 ' />

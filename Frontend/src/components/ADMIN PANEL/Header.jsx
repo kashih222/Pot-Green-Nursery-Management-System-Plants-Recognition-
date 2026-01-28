@@ -11,7 +11,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoPersonAdd, IoSettingsOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import { useAuth } from "../auth/AuthContext";
-import { useNavigate, useLocation , Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useNotifications } from "../../context/NotificationContext";
 import { format } from 'date-fns';
 import { FaTimes } from "react-icons/fa";
@@ -79,10 +79,10 @@ const Header = ({ onMenuClick }) => {
 
   const name = currentUser?.name || "Guest User";
   const email = currentUser?.email || "guestemail@gmail.com";
-  const profilePic = currentUser?.profilePic 
-    ? (currentUser.profilePic.startsWith('http') 
-        ? currentUser.profilePic 
-        : `${import.meta.env.VITE_API_BASE_URL}/uploads/${currentUser.profilePic}`)
+  const profilePic = currentUser?.profilePic
+    ? (currentUser.profilePic.startsWith('http')
+      ? currentUser.profilePic
+      : `${import.meta.env.VITE_API_BASE_URL}/uploads/${currentUser.profilePic}`)
     : "src/assets/img/KashafProfile.jpeg";
 
   return (
@@ -145,7 +145,7 @@ const Header = ({ onMenuClick }) => {
                       Refresh
                     </button>
                   </div>
-                  
+
                   {loading ? (
                     <div className="text-center py-4">
                       <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-yellow-500 mx-auto"></div>
@@ -167,9 +167,8 @@ const Header = ({ onMenuClick }) => {
                     notifications.map((notification) => (
                       <div
                         key={notification._id}
-                        className={`p-3 mb-2 rounded-lg cursor-pointer hover:bg-green-900 ${
-                          !notification.read ? 'bg-green-900/50' : ''
-                        }`}
+                        className={`p-3 mb-2 rounded-lg cursor-pointer hover:bg-green-900 ${!notification.read ? 'bg-green-900/50' : ''
+                          }`}
                         onClick={() => handleNotificationClick(notification)}
                       >
                         <div className="flex justify-between items-start">
@@ -233,30 +232,30 @@ const Header = ({ onMenuClick }) => {
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
-          disablePortal
-          keepMounted
-          disableRestoreFocus
-          MenuListProps={{
-            'aria-labelledby': 'profile-menu-button',
-            role: 'menu',
-            disablePadding: false,
-          }}
-          slotProps={{
-            paper: {
-              sx: {
-                bgcolor: '#022c22',
-                color: 'white',
-                '& .MuiDivider-root': {
-                  borderColor: '#ca8a04'
+            disablePortal
+            keepMounted
+            disableRestoreFocus
+            MenuListProps={{
+              'aria-labelledby': 'profile-menu-button',
+              role: 'menu',
+              disablePadding: false,
+            }}
+            slotProps={{
+              paper: {
+                sx: {
+                  bgcolor: '#022c22',
+                  color: 'white',
+                  '& .MuiDivider-root': {
+                    borderColor: '#ca8a04'
+                  }
                 }
+              },
+              root: {
+                disableRestoreFocus: true,
               }
-            },
-            root: {
-              disableRestoreFocus: true,
-            }
-          }}
-          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            }}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
             <MenuItem onClick={handleClose} className="!bg-green-950 hover:!bg-green-900">
               <div className="flex items-center gap-3">
@@ -290,14 +289,14 @@ const Header = ({ onMenuClick }) => {
               className="!text-gray-200 hover:!bg-green-900 !py-3"
             >
               <Link to={"/dashboard/profile"} className="flex items-center gap-2">
-  <CgProfile className="mr-2 text-yellow-500" />
-  My Account
-</Link>
+                <CgProfile className="mr-2 text-yellow-500" />
+                My Account
+              </Link>
             </MenuItem>
 
-           
 
-            
+
+
 
             <Divider />
 

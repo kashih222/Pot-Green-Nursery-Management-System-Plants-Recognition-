@@ -3,9 +3,14 @@ import { FaWhatsapp, FaMapMarkerAlt, FaInstagram, FaLeaf } from "react-icons/fa"
 import { PiPottedPlantBold } from "react-icons/pi";
 import { Link } from "react-router";
 import homepng from "../../../public/img/home.png"
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
+   <>
+   <Helmet>
+     <title> Home | Pot Green Nursery</title>
+   </Helmet>
     <div>
       <section id='home' className='relative sm:mt-8'>
         <div className='container '>
@@ -94,6 +99,7 @@ const Home = () => {
         </div>
       </section>
     </div>
+   </>
   )
 }
 
