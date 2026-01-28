@@ -3,13 +3,20 @@ const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 // Load plant class names from JSON
 const plantClassNames = require('../../../plants_names.json');
 
 // Multer setup for storing uploads
 const storage = multer.diskStorage({
-  destination: 'uploads/recognition/',
+  destination: (req, file, cb) => {
+    const uploadPath = path.join(os.tmpdir(), 'uploads/recognition');
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath, { recursive: true });
+    }
+    cb(null, uploadPath);
+  },
   filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
 });
 const upload = multer({ storage });
