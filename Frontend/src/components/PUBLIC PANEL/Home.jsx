@@ -2,6 +2,7 @@ import { LuLeaf, LuFlower } from "react-icons/lu";
 import { FaWhatsapp, FaMapMarkerAlt, FaInstagram, FaLeaf } from "react-icons/fa";
 import { PiPottedPlantBold } from "react-icons/pi";
 import { Link } from "react-router";
+import homepng from "../../assets/img/home.png"
 
 const Home = () => {
   return (
@@ -75,7 +76,7 @@ const Home = () => {
             </div>
             {/* Images */}
             <div className='w-full relative sm:mt-10 lg:w-[40%] '>
-              <img src="src/assets/img/home.png" alt="Home" />
+              <img src={homepng} alt="Home" />
               {/* flower */}
               <div className='absolute -top-10 right-0 opacity-30 animate-movingY '>
                 <LuFlower className='text-6xl text-yellow-500' />
