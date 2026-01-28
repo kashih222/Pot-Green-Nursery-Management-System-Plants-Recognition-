@@ -3,13 +3,22 @@ const fs = require('fs');
 const path = require('path');
 
 // Initialize Appwrite SDK
+const endpoint = process.env.APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1';
+const projectId = process.env.APPWRITE_PROJECT_ID;
+const apiKey = process.env.APPWRITE_API_KEY;
+const bucketId = process.env.APPWRITE_BUCKET_ID;
+
+if (!projectId || !apiKey || !bucketId) {
+    console.warn('Appwrite configuration missing. Please check environment variables.');
+}
+
 const client = new Client()
-    .setEndpoint(process.env.APPWRITE_ENDPOINT)
-    .setProject(process.env.APPWRITE_PROJECT_ID)
-    .setKey(process.env.APPWRITE_API_KEY);
+    .setEndpoint(endpoint)
+    .setProject(projectId)
+    .setKey(apiKey);
 
 const storage = new Storage(client);
-const BUCKET_ID = process.env.APPWRITE_BUCKET_ID;
+const BUCKET_ID = bucketId;
 
 /**
  * Upload a file to Appwrite Storage
@@ -19,6 +28,10 @@ const BUCKET_ID = process.env.APPWRITE_BUCKET_ID;
  */
 const uploadFile = async (filePath, fileName) => {
     try {
+        if (!projectId || !apiKey || !bucketId) {
+            throw new Error('Appwrite configuration missing. Set APPWRITE_PROJECT_ID, APPWRITE_API_KEY, and APPWRITE_BUCKET_ID.');
+        }
+
         if (!fs.existsSync(filePath)) {
             throw new Error(`File not found at ${filePath}`);
         }

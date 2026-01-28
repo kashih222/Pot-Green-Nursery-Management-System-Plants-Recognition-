@@ -56,7 +56,7 @@ router.post('/upload', upload.single('plantImage'), async (req, res) => {
         console.error('Appwrite upload failed:', uploadError);
         return res.status(500).json({
           success: false,
-          error: 'Failed to upload image to storage'
+          error: `Failed to upload image to storage: ${uploadError.message}`
         });
       }
     }
@@ -90,7 +90,7 @@ router.post('/upload', upload.single('plantImage'), async (req, res) => {
     console.error('Error uploading plant:', error);
     res.status(500).json({ 
       success: false,
-      error: 'Server error occurred while uploading plant.' 
+      error: `Server error: ${error.message}` 
     });
   }
 });
