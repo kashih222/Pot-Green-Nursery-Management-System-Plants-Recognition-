@@ -9,7 +9,7 @@ const plantClassNames = require('../../../plants_names.json');
 
 // Multer setup for storing uploads
 const storage = multer.diskStorage({
-  destination: 'uploads/',
+  destination: 'uploads/recognition/',
   filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
 });
 const upload = multer({ storage });
