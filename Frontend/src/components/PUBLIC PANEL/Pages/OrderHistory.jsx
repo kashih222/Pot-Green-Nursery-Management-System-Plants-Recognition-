@@ -91,8 +91,8 @@ const OrderHistory = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 mt-[80px]">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 mt-[80px] ">
+      <div className="max-w-7xl mx-auto sm:mt-16 md:mt-2">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Order History</h1>
           <div className="mt-4 md:mt-0 bg-yellow-100 rounded-lg px-4 py-2">
