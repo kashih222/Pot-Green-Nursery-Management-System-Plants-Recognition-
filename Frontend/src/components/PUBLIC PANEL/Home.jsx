@@ -12,7 +12,7 @@ const Home = () => {
      <title> Home | Pot Green Nursery</title>
    </Helmet>
     <div>
-      <section id='home' className='relative sm:mt-8'>
+      <section id='home' className='relative sm:mt-24 md:mt-8'>
         <div className='container '>
           {/* blobs */}
           <div className='w-64 h-64 bg-green-700 rounded-full blur-3xl -z-10 

@@ -238,7 +238,7 @@ const ServicesPage = () => {
   };
 
   return (
-    <div className="bg-white text-green-900 pt-40">
+    <div className="bg-white text-green-900  sm:pt-48 md:pt-28">
       <Helmet>
             <title> Services | Pot Green Nursery</title>
         </Helmet>

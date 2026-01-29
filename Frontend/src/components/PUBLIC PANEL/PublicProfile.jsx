@@ -38,7 +38,7 @@ const PublicProfile = ({ isOpen, onClose }) => {
   useEffect(() => {
     let isMounted = true;
     const abortController = new AbortController();
-    
+
     if (isOpen) {
       console.log('PublicProfile: Fetching user data...');
       fetchUserData(abortController.signal);
@@ -55,10 +55,10 @@ const PublicProfile = ({ isOpen, onClose }) => {
       setLoading(true);
       const response = await axios.get('/api/web/me', { signal });
       const user = response.data.user;
-      
+
       // Check if component is still mounted before updating state
       if (!isOpen) return;
-      
+
       setUserData({
         name: user.name,
         email: user.email,
@@ -70,13 +70,13 @@ const PublicProfile = ({ isOpen, onClose }) => {
         }) : 'Unknown',
         profilePic: user.profilePic
       });
-      
+
       setFormData({
         fullName: user.name,
         email: user.email,
         password: ''
       });
-      
+
       setOriginalData({
         fullName: user.name,
         email: user.email,
@@ -85,7 +85,7 @@ const PublicProfile = ({ isOpen, onClose }) => {
     } catch (error) {
       // Don't log errors for aborted requests
       if (error.name === 'AbortError') return;
-      
+
       console.error('Error fetching user data:', error);
       if (isOpen) {
         setMessage('Failed to load user data');
@@ -107,20 +107,20 @@ const PublicProfile = ({ isOpen, onClose }) => {
     try {
       setLoading(true);
       setMessage('');
-      
+
       const updateData = {};
       if (formData.fullName !== originalData.fullName) updateData.fullName = formData.fullName;
       if (formData.email !== originalData.email) updateData.email = formData.email;
       if (formData.password) updateData.password = formData.password;
-      
+
       if (Object.keys(updateData).length === 0) {
         setMessage('No changes to save');
         setIsEditing(false);
         return;
       }
-      
+
       const response = await axios.put('/api/web/me', updateData);
-      
+
       if (response.data.success) {
         setMessage('Profile updated successfully!');
         setUserData(prev => ({
@@ -133,7 +133,7 @@ const PublicProfile = ({ isOpen, onClose }) => {
           password: ''
         }));
         setIsEditing(false);
-        
+
         // Update the user data in AuthContext
         updateUser(response.data.user);
       }
@@ -194,7 +194,7 @@ const PublicProfile = ({ isOpen, onClose }) => {
           ...prev,
           profilePic: response.data.user.profilePic
         }));
-        
+
         // Update the user data in AuthContext
         updateUser(response.data.user);
       }
@@ -210,51 +210,40 @@ const PublicProfile = ({ isOpen, onClose }) => {
     fileInputRef.current?.click();
   };
 
-  // Focus management and accessibility
   useEffect(() => {
     if (isOpen) {
-      // Store the element that had focus before opening the modal
       const previouslyFocusedElement = document.activeElement;
-      
-      // Focus the first focusable element in the modal
       if (firstFocusableElementRef.current) {
         firstFocusableElementRef.current.focus();
       }
-      
-      // Instead of making the entire page inert, we'll use a more targeted approach
-      // Only prevent body scroll and manage focus within the modal
+
       document.body.style.overflow = 'hidden';
-      
-      // Add a class to the body to indicate modal is open
       document.body.classList.add('modal-open');
-      
+
       return () => {
-        // Restore focus when modal closes
         if (previouslyFocusedElement && typeof previouslyFocusedElement.focus === 'function') {
           previouslyFocusedElement.focus();
         }
-        
-        // Remove body class and restore scroll
+
         document.body.classList.remove('modal-open');
         document.body.style.overflow = 'unset';
       };
     }
   }, [isOpen]);
 
-  // Handle keyboard navigation (trap focus within modal)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!isOpen) return;
-      
+
       if (e.key === 'Tab') {
         const focusableElements = modalRef.current?.querySelectorAll(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
-        
+
         if (focusableElements && focusableElements.length > 0) {
           const firstElement = focusableElements[0];
           const lastElement = focusableElements[focusableElements.length - 1];
-          
+
           if (e.shiftKey) {
             if (document.activeElement === firstElement) {
               e.preventDefault();
@@ -281,28 +270,27 @@ const PublicProfile = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
-  // Don't render if modal is not open
   if (!isOpen) {
     console.log('PublicProfile: Modal is not open');
     return null;
   }
-  
+
   console.log('PublicProfile: Modal is open, rendering...');
 
   return (
-    <div 
-      className="fixed inset-0 bg-black bg-opacity-50 z-[9999] flex items-center justify-center p-4" 
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 z-[9999] flex items-center justify-center p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="profile-modal-title"
     >
       <Helmet>
-              <title>My Profile | Pot Green Nursary</title>
-            </Helmet>
-      <div 
+        <title>My Profile | Pot Green Nursary</title>
+      </Helmet>
+      <div
         ref={modalRef}
-        className="bg-green-900 text-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-green-700 shadow-2xl relative" 
+        className="bg-green-900 text-white w-full max-w-4xl max-h-[90vh] overflow-y-scroll rounded-3xl border border-green-700 shadow-2xl relative"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -314,7 +302,7 @@ const PublicProfile = ({ isOpen, onClose }) => {
         >
           <X size={20} />
         </button>
-        
+
         {/* Main Profile Card */}
         <div className="bg-gradient-to-br from-green-800 to-green-900 rounded-3xl border border-green-700 shadow-2xl overflow-hidden">
           {/* Header Section with Background Pattern */}
@@ -329,16 +317,16 @@ const PublicProfile = ({ isOpen, onClose }) => {
 
           <div className="relative px-8 pb-8">
             {/* Avatar Section */}
-            <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6 -mt-16">
+            <div className="flex sm:flex-col md:flex-row  items-center  sm:items-center gap-6 -mt-16">
               <div className="relative group">
                 <div className="w-32 h-32 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-4xl font-bold text-green-900 border-4 border-white shadow-xl group-hover:scale-105 transition-transform duration-300 overflow-hidden">
                   {userData.profilePic ? (
-                    <img 
-                      src={userData.profilePic.startsWith('http') 
-                        ? userData.profilePic 
+                    <img
+                      src={userData.profilePic.startsWith('http')
+                        ? userData.profilePic
                         : `${import.meta.env.VITE_API_BASE_URL}/uploads/${userData.profilePic}`
-                      } 
-                      alt={userData.name} 
+                      }
+                      alt={userData.name}
                       className="w-full h-full rounded-full object-cover"
                       onError={(e) => {
                         e.target.style.display = 'none';
@@ -350,7 +338,7 @@ const PublicProfile = ({ isOpen, onClose }) => {
                     <User size={48} />
                   </div>
                 </div>
-                
+
                 {/* Camera icon for image upload */}
                 <button
                   onClick={triggerFileInput}
@@ -364,7 +352,7 @@ const PublicProfile = ({ isOpen, onClose }) => {
                     <Camera size={16} className="text-white" />
                   )}
                 </button>
-                
+
                 {/* Hidden file input */}
                 <input
                   ref={fileInputRef}
@@ -374,9 +362,9 @@ const PublicProfile = ({ isOpen, onClose }) => {
                   className="hidden"
                 />
               </div>
-             
+
               <div className="text-center sm:text-left flex-1">
-                <h1 
+                <h1
                   id="profile-modal-title"
                   className="text-4xl font-bold text-white mb-2 bg-gradient-to-r from-white to-yellow-200 bg-clip-text text-transparent"
                 >
@@ -388,10 +376,10 @@ const PublicProfile = ({ isOpen, onClose }) => {
             </div>
 
             {/* Contact Information - Editable */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 pt-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-2 lg:gap-6 md:mb-4 lg:mb-8 pt-8">
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-yellow-400 mb-4">Contact Information</h3>
-                
+
                 {/* Name Field */}
                 <div className="flex items-center gap-4 p-4 bg-green-800/30 rounded-xl border border-green-600/30 hover:bg-green-700/30 transition-colors">
                   <div className="bg-yellow-400 p-2 rounded-lg">
@@ -467,7 +455,7 @@ const PublicProfile = ({ isOpen, onClose }) => {
 
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-yellow-400 mb-4">Account Details</h3>
-                
+
                 <div className="flex items-center gap-4 p-4 bg-green-800/30 rounded-xl border border-green-600/30 hover:bg-green-700/30 transition-colors">
                   <div className="bg-yellow-400 p-2 rounded-lg">
                     <Calendar className="text-green-900" size={20} />
@@ -492,11 +480,10 @@ const PublicProfile = ({ isOpen, onClose }) => {
 
             {/* Message Display */}
             {message && (
-              <div className={`mb-6 p-4 rounded-xl text-center ${
-                message.includes('successfully') 
-                  ? 'bg-green-800/50 border border-green-600 text-green-200' 
+              <div className={`mb-6 p-4 rounded-xl text-center ${message.includes('successfully')
+                  ? 'bg-green-800/50 border border-green-600 text-green-200'
                   : 'bg-red-800/50 border border-red-600 text-red-200'
-              }`}>
+                }`}>
                 {message}
               </div>
             )}
@@ -524,7 +511,7 @@ const PublicProfile = ({ isOpen, onClose }) => {
                     <Save size={20} />
                     {loading ? 'Saving...' : 'Save Changes'}
                   </button>
-                  
+
                   <button
                     ref={lastFocusableElementRef}
                     onClick={handleCancel}

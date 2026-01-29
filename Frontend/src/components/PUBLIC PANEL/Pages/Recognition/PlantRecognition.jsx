@@ -87,7 +87,7 @@ const PlantRecognition = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 py-12 px-4 mt-20">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 py-12 px-4  sm:mt-28 md:mt-20">
       <Helmet>
             <title> Recognition | Pot Green Nursery</title>
         </Helmet>

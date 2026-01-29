@@ -6,15 +6,7 @@ import { useAuth } from '../auth/AuthContext';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import PublicProfile from './PublicProfile';
-import {
-  FaUserCircle,
-  FaCog,
-  FaHistory,
-  FaHeart,
-  FaSignOutAlt,
-  FaShoppingCart,
-  FaTimes
-} from 'react-icons/fa';
+import { FaUserCircle, FaHistory, FaSignOutAlt, FaShoppingCart, FaTimes } from 'react-icons/fa';
 import { useCart } from '../../context/CartContext';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

@@ -9,7 +9,7 @@ const Plants = () => {
 
  
   return (
-    <div className='container mt-6'>
+    <div className='container sm:mt-24 md:mt-8'>
       <Helmet>
             <title> Plants | Pot Green Nursery</title>
         </Helmet>

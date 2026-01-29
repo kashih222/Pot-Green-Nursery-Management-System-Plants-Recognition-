@@ -4,7 +4,7 @@ import leaf3 from "../../../../../public/img/leaf-3.png"
 import { Helmet } from "react-helmet-async"
 const About = () => {
   return (
-    <div>
+    <div className="sm:mt-36 md:mt-10">
         <Helmet>
           <title> About | Pot Green Nursery</title>
         </Helmet>
